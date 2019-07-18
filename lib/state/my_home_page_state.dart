@@ -1,13 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_login/model/user.dart';
 import 'package:flutter_login/service/user_service.dart';
 import 'package:flutter_login/widget/stateful/my_home_page.dart';
-
-import 'package:flutter/foundation.dart';
-
-import '../encryption_provider.dart';
 
 class MyHomePageState extends State<MyHomePage> {
   TextStyle _style = TextStyle(fontFamily: 'Monserrat', fontSize: 20.0);
