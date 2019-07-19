@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login/model/user.dart';
 import 'package:flutter_login/service/user_service.dart';
 import 'package:flutter_login/widget/stateful/my_home_page.dart';
 import 'dart:convert';
@@ -23,11 +24,16 @@ class MyHomePageState extends State<MyHomePage> {
       _progressBarActive = false;
     });
 
-    final parsedJson = json.decode(response.body);
-
-    if (response.statusCode != 200 || parsedJson['accessToken']?.isEmpty ?? true) {
+    if (response.statusCode != 200) {
       return;
     }
+
+    final parsedJson = json.decode(response.body);
+    if (parsedJson['accessToken']?.isEmpty() ?? true) {
+      return;
+    }
+
+    User user = User.fromJson(parsedJson);
 
     Navigator.of(context).pushReplacementNamed('/user_home');
   }

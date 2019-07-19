@@ -1,29 +1,39 @@
 class User {
   // TODO: mock class for now
 
-  int id;
-  String name;
-  String username;
+  String accessToken;
   String email;
+  String employeeId;
+
+  String userId;
+  String userName;
+  String userSurname;
 
   User({
-    this.id,
-    this.name,
-    this.username,
+    this.accessToken,
     this.email,
+    this.employeeId,
+    this.userId,
+    this.userName,
+    this.userSurname,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => new User(
-    id: json["id"],
-    name: json["name"],
-    username: json["username"],
+    accessToken: json["accessToken"],
     email: json["email"],
+    employeeId: json["employeeId"],
+    userId: json["userId"],
+    userName: json["userName"],
+    userSurname: json["userSurname"],
   );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "username": username,
+    "accessToken": accessToken,
     "email": email,
+    "employeeId": employeeId,
+    "userId": userId,
+    "userName": userName,
+    "userName": userName,
+    "userSurname": userSurname,
   };
 }

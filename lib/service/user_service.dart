@@ -7,7 +7,7 @@ import 'dart:async';
 import 'package:flutter_login/util/encryption_provider.dart';
 
 class UserService {
-  static final String _apiURL = 'http://ec2-34-244-31-212.eu-west-1.compute.amazonaws.com:9003';
+  static final String _apiURL = 'http://localhost:9003';
   static final String _apiVersion = '/v1';
   static final String _requestURL = _apiURL + _apiVersion;
 
