@@ -7,6 +7,7 @@ class LbsText extends StatelessWidget {
   final double fontSize;
   final IconData icon;
   final bool password;
+  final TextEditingController textCont;
 
   LbsText(
       {Key key,
@@ -15,7 +16,8 @@ class LbsText extends StatelessWidget {
         this.color = Colors.white,
         this.fontSize = 12,
         this.icon = Icons.remove_red_eye,
-        this.password = false})
+        this.password = false,
+        this.textCont})
       : super(key: key);
 
   @override
@@ -24,6 +26,7 @@ class LbsText extends StatelessWidget {
       // cursorColor: Colors.red,
       // cursorRadius: Radius.circular(1),
       // cursorWidth: 16.0,
+      controller: this.textCont,
       textAlign: TextAlign.start,
       obscureText: this.password,
       decoration: InputDecoration(

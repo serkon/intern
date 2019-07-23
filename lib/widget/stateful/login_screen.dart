@@ -14,19 +14,34 @@ class LoginScreen extends StatefulWidget {
     return LoginScreenState();
   }
 }
-
+void giveMessage(BuildContext context, String msg) {
+  var alertDialog = AlertDialog(
+    title: Text("Message"),
+    content: Text("$msg"),
+  );
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alertDialog;
+      });
+}
 class LoginScreenState extends State<LoginScreen> {
   String _usernameText, _passwordText;
-
+  TextEditingController userNameController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
   Future _doLogin() async {
-    if (_usernameText == null || _passwordText == null) {
-      return;
+    _usernameText = userNameController.text;
+    _passwordText = passwordController.text;
+    if (_usernameText == "" || _passwordText == "") {
+      return giveMessage(context, "cannot be empty");
     }
 
     final response = await UserService.loginUser(_usernameText, _passwordText);
 
-    if (response.statusCode != 200) {
-      return;
+    if (response.statusCode == 200) {
+      giveMessage(context, "Success => " + (response.statusCode).toString());
+    } else {
+      giveMessage(context, "Failure => " + (response.statusCode).toString());
     }
 
     final parsedJson = json.decode(response.body);
@@ -69,15 +84,16 @@ class LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: EdgeInsets.only(top: 20),
                       child:
-                      LbsText(fontSize: 16, title: "Username", icon: Icons.person),
+                      LbsText(fontSize: 16, title: "Username", icon: Icons.person, textCont: this.userNameController),
                     ),
                     Padding(
                       padding: EdgeInsets.only(bottom: 20),
                       child: LbsText(
-                        fontSize: 16,
-                        title: "Password",
-                        icon: Icons.lock,
-                        password: true,
+                          fontSize: 16,
+                          title: "Password",
+                          icon: Icons.lock,
+                          password: true,
+                          textCont: this.passwordController
                       ),
                     ),
                     Container(
