@@ -49,9 +49,10 @@ class LoginScreenState extends State<LoginScreen> {
 
     User user = User.fromJson(parsedJson);
     debugPrint("Logged in as " + user.userName);
-    Navigator.push(
+    Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => new EmployeeInfoScreen()),
+          (Route<dynamic> route) => false,
     );
   }
 

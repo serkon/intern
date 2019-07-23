@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'search_box.dart';
 
 class EmployeeInfoScreen extends StatefulWidget {
   @override
@@ -11,10 +12,11 @@ class EmployeeInfoScreen extends StatefulWidget {
 class EmployeeInfoScreenState extends State<EmployeeInfoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
-      appBar: AppBar(
-        backgroundColor: Colors.teal.withOpacity(0.5),
-      ),
+  body: Stack(
+    children: <Widget>[
+      SearchBox(),
+    ],
+  )
     );
   }
 }
