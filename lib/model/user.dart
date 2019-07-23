@@ -19,7 +19,7 @@ class User {
   });
 
   factory User.fromJson(Map<String, dynamic> json) => new User(
-    accessToken: json["accessToken"],
+    accessToken: json["access_token"],
     email: json["email"],
     employeeId: json["employeeId"],
     userId: json["userId"],
@@ -28,7 +28,7 @@ class User {
   );
 
   Map<String, dynamic> toJson() => {
-    "accessToken": accessToken,
+    "access_token": accessToken,
     "email": email,
     "employeeId": employeeId,
     "userId": userId,

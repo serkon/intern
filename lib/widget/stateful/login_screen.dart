@@ -40,17 +40,19 @@ class LoginScreenState extends State<LoginScreen> {
 
     final parsedJson = json.decode(response.body);
 
-    if (parsedJson['accessToken']?.isEmpty() ?? true) {
+    debugPrint("json " + parsedJson.toString());
+    debugPrint("accc " + parsedJson['access_token']);
+
+    if (parsedJson['access_token'].toString()?.isEmpty ?? true) {
       return;
     }
 
     User user = User.fromJson(parsedJson);
     debugPrint("Logged in as " + user.userName);
-
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) {
-          return EmployeeInfoScreen();
-        }));
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => new EmployeeInfoScreen()),
+    );
   }
 
   @override
