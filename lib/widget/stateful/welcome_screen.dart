@@ -1,19 +1,32 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_login/model/user.dart';
+import 'package:flutter_login/util/encryption_provider.dart';
+import 'package:flutter_login/widget/stateful/employee_info_screen.dart';
 import 'package:flutter_login/widget/stateful/login_screen.dart';
 import 'package:flutter_login/widget/stateless/expense_image_asset.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:flutter_login/widget/stateful/base/AuthenticatedScreenState.dart';
+import 'package:flutter_login/widget/stateful/base/NotAuthenticatedScreenState.dart';
 //import 'lbsText.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return WelcomeScreenState();
+  }
+}
+
+class WelcomeScreenState extends NotAuthenticatedScreenState {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
         resizeToAvoidBottomInset: true,
         body: Container(
-          width: MediaQuery
-              .of(context)
-              .size
-              .width,
+          width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/images/welcome_background.png"),
@@ -35,7 +48,8 @@ class WelcomeScreen extends StatelessWidget {
                   child: Text(
                       'This app is designed for you. Journey will be your guide',
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white,
+                      style: TextStyle(
+                          color: Colors.white,
                           fontSize: 12,
                           fontWeight: FontWeight.w600)),
                 ),
@@ -60,17 +74,16 @@ class WelcomeScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                              return LoginScreen();
-                            }));
+                          return LoginScreen();
+                        }));
                       },
-                      child: Text('login',
-                          style: TextStyle(color: Colors.black)),
+                      child:
+                          Text('login', style: TextStyle(color: Colors.black)),
                       height: 40.0,
                       minWidth: 315.0,
                       color: Colors.white,
                       shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(30.0))))
-
             ],
           ),
         ));

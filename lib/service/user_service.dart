@@ -13,8 +13,8 @@ class UserService {
 
   static Future<http.Response> loginUser(String username, String password) async{
     final String endpoint = '/login';
-    final String encryptedPassword = EncryptionProvider.encrypt(password).base64;
-    final String encryptedUsername = EncryptionProvider.encrypt(username).base64;
+    final String encryptedPassword = EncryptionProvider.encrypt(password);
+    final String encryptedUsername = EncryptionProvider.encrypt(username);
 
     final requestBody = jsonEncode({"password" : encryptedPassword, "userName" : encryptedUsername});
 

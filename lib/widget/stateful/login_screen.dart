@@ -1,13 +1,17 @@
 import 'dart:convert';
 
+import 'package:encrypt/encrypt.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/model/user.dart';
 import 'package:flutter_login/service/user_service.dart';
+import 'package:flutter_login/util/encryption_provider.dart';
 import 'package:flutter_login/widget/stateless/LbsText.dart';
 import 'package:flutter_login/widget/stateless/expense_image_asset.dart';
 import 'package:flutter_login/widget/stateless/give_message.dart';
 import 'package:flutter_login/widget/stateless/login_background.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:flutter_login/widget/stateful/base/NotAuthenticatedScreenState.dart';
 import 'employee_info_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -18,7 +22,7 @@ class LoginScreen extends StatefulWidget {
   }
 }
 
-class LoginScreenState extends State<LoginScreen> {
+class LoginScreenState extends NotAuthenticatedScreenState {
   String _usernameText, _passwordText;
   TextEditingController userNameController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
@@ -26,6 +30,7 @@ class LoginScreenState extends State<LoginScreen> {
   Future _doLogin() async {
     _usernameText = userNameController.text;
     _passwordText = passwordController.text;
+
     if (_usernameText == "" || _passwordText == "") {
       return giveMessage(context, "cannot be empty");
     }
@@ -36,19 +41,30 @@ class LoginScreenState extends State<LoginScreen> {
       giveMessage(context, "Success => " + (response.statusCode).toString());
     } else {
       giveMessage(context, "Failure => " + (response.statusCode).toString());
+      return;
     }
 
     final parsedJson = json.decode(response.body);
-
-    debugPrint("json " + parsedJson.toString());
-    debugPrint("accc " + parsedJson['access_token']);
 
     if (parsedJson['access_token'].toString()?.isEmpty ?? true) {
       return;
     }
 
     User user = User.fromJson(parsedJson);
-    debugPrint("Logged in as " + user.userName);
+    debugPrint(user.accessToken);
+
+    // obtain shared preferences
+    final globalStateManager = await SharedPreferences.getInstance();
+
+    String encryptedUser = EncryptionProvider.encrypt(json.encode(user));
+
+    // set value
+    await globalStateManager.setString("currentUser", encryptedUser);
+
+    User decryptedUser = User.fromJson(json.decode(EncryptionProvider.decrypt(globalStateManager.getString("currentUser"))) as Map<String, dynamic>);
+
+    debugPrint(decryptedUser.accessToken);
+
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => new EmployeeInfoScreen()),

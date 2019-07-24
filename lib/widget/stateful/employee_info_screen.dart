@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'search_box.dart';
+import 'package:flutter_login/widget/stateful/base/AuthenticatedScreenState.dart';
+import 'package:flutter_login/widget/stateless/search_box.dart';
 
 class EmployeeInfoScreen extends StatefulWidget {
   @override
@@ -9,14 +12,13 @@ class EmployeeInfoScreen extends StatefulWidget {
   }
 }
 
-class EmployeeInfoScreenState extends State<EmployeeInfoScreen> {
+class EmployeeInfoScreenState extends AuthenticatedScreenState {
   Widget build(BuildContext context) {
     return Scaffold(
-  body: Stack(
-    children: <Widget>[
-      SearchBox(),
-    ],
-  )
-    );
+        body: Stack(
+      children: <Widget>[
+        SearchBox(),
+      ],
+    ));
   }
 }

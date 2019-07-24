@@ -4,14 +4,14 @@ class EncryptionProvider {
   static final _key = "Y0FlYCd1KXozTjdmSCx6Xw==";
   static final _encrypter = Encrypter(AES(Key.fromBase64(_key.toString()), mode: AESMode.ecb));
 
-  static Encrypted encrypt(String text) {
+  static String encrypt(String text) {
     final encrypted = _encrypter.encrypt(text);
 
-    return encrypted;
+    return encrypted.base64;
   }
 
-  static String decrypt(Encrypted encrypted) {
-    final decrypted = _encrypter.decrypt(encrypted);
+  static String decrypt(String encrypted) {
+    final decrypted = _encrypter.decrypt64(encrypted);
 
     return decrypted;
   }
