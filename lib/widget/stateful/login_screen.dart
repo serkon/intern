@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login/model/user.dart';
 import 'package:flutter_login/service/user_service.dart';
 import 'package:flutter_login/util/encryption_provider.dart';
+import 'package:flutter_login/util/util.dart';
 import 'package:flutter_login/widget/stateless/LbsText.dart';
 import 'package:flutter_login/widget/stateless/expense_image_asset.dart';
 import 'package:flutter_login/widget/stateless/give_message.dart';
@@ -27,47 +28,25 @@ class LoginScreenState extends NotAuthenticatedScreenState {
   TextEditingController userNameController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
 
-  Future _doLogin() async {
-    _usernameText = userNameController.text;
-    _passwordText = passwordController.text;
+  void _doLogin() {
+    _usernameText = userNameController.text.trim();
+    _passwordText = passwordController.text.trim();
 
-    if (_usernameText == "" || _passwordText == "") {
-      return giveMessage(context, "Cannot be empty");
+    if ((_usernameText?.isEmpty ?? true) || (_passwordText?.isEmpty ?? true)) {
+      return giveMessage(context, "Username and password cannot be empty !");
     }
 
-    final response = await UserService.loginUser(_usernameText, _passwordText);
+    Util.loginUser(_usernameText, _passwordText, context).then((loggedIn) {
+      giveMessage(context, "Logged in !");
 
-    if (response.statusCode == 200) {
-      giveMessage(context, "Success => " + (response.statusCode).toString());
-    } else {
-      return giveMessage(context, "Failure => " + (response.statusCode).toString());
-    }
-
-    final parsedJson = await json.decode(response.body);
-
-    if (parsedJson['access_token'].toString()?.isEmpty ?? true) {
-      return;
-    }
-
-    User user = User.fromJson(parsedJson);
-
-    print("login screen");
-
-    final globalStateManager = await SharedPreferences.getInstance();
-
-    String encodedUser = json.encode(user);
-
-    String encryptedUser = EncryptionProvider.encrypt(encodedUser);
-
-    await globalStateManager.setString("currentUser", encryptedUser);
-
-    debugPrint(user.tenantList.toString());
-
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (context) => new EmployeeInfoScreen()),
-          (Route<dynamic> route) => false,
-    );
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => new EmployeeInfoScreen()),
+            (Route<dynamic> route) => false,
+      );
+    }).catchError((error) {
+      giveMessage(context, "Login failed: " + error.toString());
+    });
   }
 
   @override
