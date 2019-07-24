@@ -27,6 +27,8 @@ class Util {
 
     User currentUser = User.fromJson(decodedUser);
 
+    print("util");
+
     if (currentUser == null || currentUser.accessToken?.isEmpty ?? true) {
       return false;
     }

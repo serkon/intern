@@ -1,6 +1,8 @@
-class User {
-  // TODO: mock class for now
+import 'dart:convert';
 
+import 'package:flutter_login/model/tenant.dart';
+
+class User {
   String accessToken;
   String email;
   String employeeId;
@@ -9,31 +11,46 @@ class User {
   String userName;
   String userSurname;
 
-  User({
-    this.accessToken,
-    this.email,
-    this.employeeId,
-    this.userId,
-    this.userName,
-    this.userSurname,
-  });
+  List<Tenant> tenantList;
 
-  factory User.fromJson(Map<String, dynamic> json) => new User(
-    accessToken: json["access_token"],
-    email: json["email"],
-    employeeId: json["employeeId"],
-    userId: json["userId"],
-    userName: json["userName"],
-    userSurname: json["userSurname"],
-  );
+  User(
+      {this.accessToken,
+      this.email,
+      this.employeeId,
+      this.userId,
+      this.userName,
+      this.userSurname,
+      this.tenantList});
+
+  factory User.fromJson(Map<String, dynamic> json) {
+    User user = new User(
+        accessToken: json["access_token"],
+        email: json["email"],
+        employeeId: json["employeeId"],
+        userId: json["userId"],
+        userName: json["userName"],
+        userSurname: json["userSurname"],
+        tenantList: handleTenants(json["tenantList"]));
+    return user;
+  }
 
   Map<String, dynamic> toJson() => {
-    "access_token": accessToken,
-    "email": email,
-    "employeeId": employeeId,
-    "userId": userId,
-    "userName": userName,
-    "userName": userName,
-    "userSurname": userSurname,
-  };
+        "access_token": accessToken,
+        "email": email,
+        "employeeId": employeeId,
+        "userId": userId,
+        "userName": userName,
+        "userSurname": userSurname,
+        "tenantList": tenantList,
+      };
+
+  static List<Tenant> handleTenants(List<dynamic> tenants) {
+    List<Tenant> tenantList = new List();
+
+    tenants.forEach((tenant) {
+      tenantList.add(Tenant.fromJson(tenant));
+    });
+
+    return tenantList;
+  }
 }

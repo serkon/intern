@@ -51,6 +51,8 @@ class LoginScreenState extends NotAuthenticatedScreenState {
 
     User user = User.fromJson(parsedJson);
 
+    print("login screen");
+
     final globalStateManager = await SharedPreferences.getInstance();
 
     String encodedUser = json.encode(user);
@@ -58,6 +60,8 @@ class LoginScreenState extends NotAuthenticatedScreenState {
     String encryptedUser = EncryptionProvider.encrypt(encodedUser);
 
     await globalStateManager.setString("currentUser", encryptedUser);
+
+    debugPrint(user.tenantList.toString());
 
     Navigator.pushAndRemoveUntil(
       context,
