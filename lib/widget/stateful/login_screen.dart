@@ -32,7 +32,7 @@ class LoginScreenState extends NotAuthenticatedScreenState {
     _passwordText = passwordController.text;
 
     if (_usernameText == "" || _passwordText == "") {
-      return giveMessage(context, "cannot be empty");
+      return giveMessage(context, "Cannot be empty");
     }
 
     final response = await UserService.loginUser(_usernameText, _passwordText);
@@ -40,30 +40,24 @@ class LoginScreenState extends NotAuthenticatedScreenState {
     if (response.statusCode == 200) {
       giveMessage(context, "Success => " + (response.statusCode).toString());
     } else {
-      giveMessage(context, "Failure => " + (response.statusCode).toString());
-      return;
+      return giveMessage(context, "Failure => " + (response.statusCode).toString());
     }
 
-    final parsedJson = json.decode(response.body);
+    final parsedJson = await json.decode(response.body);
 
     if (parsedJson['access_token'].toString()?.isEmpty ?? true) {
       return;
     }
 
     User user = User.fromJson(parsedJson);
-    debugPrint(user.accessToken);
 
-    // obtain shared preferences
     final globalStateManager = await SharedPreferences.getInstance();
 
-    String encryptedUser = EncryptionProvider.encrypt(json.encode(user));
+    String encodedUser = json.encode(user);
 
-    // set value
+    String encryptedUser = EncryptionProvider.encrypt(encodedUser);
+
     await globalStateManager.setString("currentUser", encryptedUser);
-
-    User decryptedUser = User.fromJson(json.decode(EncryptionProvider.decrypt(globalStateManager.getString("currentUser"))) as Map<String, dynamic>);
-
-    debugPrint(decryptedUser.accessToken);
 
     Navigator.pushAndRemoveUntil(
       context,
