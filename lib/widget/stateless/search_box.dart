@@ -5,7 +5,6 @@ class SearchBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-
             title: Text("Search"), actions: <Widget>[
       IconButton(icon: Icon(Icons.search, size:283,), onPressed: () {
         showSearch(context: context, delegate: DataSearch());

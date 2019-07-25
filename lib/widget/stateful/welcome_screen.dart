@@ -1,21 +1,11 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_login/model/user.dart';
-import 'package:flutter_login/util/encryption_provider.dart';
-import 'package:flutter_login/widget/stateful/employee_info_screen.dart';
 import 'package:flutter_login/widget/stateful/login_screen.dart';
 import 'package:flutter_login/widget/stateless/expense_image_asset.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import 'package:flutter_login/widget/stateful/base/AuthenticatedScreenState.dart';
 import 'package:flutter_login/widget/stateful/base/NotAuthenticatedScreenState.dart';
-//import 'lbsText.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return WelcomeScreenState();
   }
 }

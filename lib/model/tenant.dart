@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class Tenant {
   bool active;
   String description;
