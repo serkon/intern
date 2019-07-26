@@ -22,19 +22,17 @@ class LoginScreenState extends NotAuthenticatedScreenState {
   void _doLogin() {
     _usernameText = userNameController.text.trim();
     _passwordText = passwordController.text.trim();
-
     if ((_usernameText?.isEmpty ?? true) || (_passwordText?.isEmpty ?? true)) {
       return giveMessage(context, "Username and password cannot be empty !");
     }
-
-    Util.loginUser(_usernameText, _passwordText, context).then((loggedIn) {
+    Util.loginUser(_usernameText, _passwordText).then((loggedIn) {
       giveMessage(context, "Logged in !");
-
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => new EmployeeInfoScreen()),
         (Route<dynamic> route) => false,
       );
+      Util.getPersonByUserId();
     }).catchError((error) {
       giveMessage(context, "Login failed: " + error.toString());
     });
