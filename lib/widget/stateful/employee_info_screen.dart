@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/widget/stateful/search_box2.dart';
+import 'package:flutter_login/widget/stateless/blur_img.dart';
 import 'package:flutter_login/widget/stateless/login_background.dart';
 
 final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
@@ -14,6 +15,8 @@ class EmployeeInfoScreen extends StatefulWidget {
 
 class EmployeeInfoScreenState extends State<EmployeeInfoScreen> {
   Widget build(BuildContext context) {
+    var assetImage = new AssetImage("assets/images/sunglasses-c.png");
+    var image = new Image(image: assetImage, height: 50.0, width: 330.0);
     return Scaffold(
         key: scaffoldKey,
         appBar: AppBar(
@@ -29,14 +32,19 @@ class EmployeeInfoScreenState extends State<EmployeeInfoScreen> {
                 icon: const Icon(Icons.menu),
               )
             ]),
-        body: Container(
-          color: Colors.deepPurple,
-          height: 291.0,
-          child: new ListView(children: [
-          MaterialButton(
+        body: Stack(
+          children: <Widget>[
+            Positioned.fill(child: Container(
+                color: Colors.deepPurple,
+            child:ListView(
+            children: <Widget>[
+              ExpenseImageAsset2(),
 
-          )
-          ]),
+            ],
+        )))
+
+
+          ],
         ));
   }
 }
