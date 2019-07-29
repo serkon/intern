@@ -7,13 +7,12 @@ import 'package:flutter_login/service/authentication_service.dart';
 import 'package:flutter_login/service/person_service.dart';
 import '../main.dart';
 import 'app_localizations.dart';
-import 'encryption_provider.dart';
 import 'global_state_manager.dart';
 
 abstract class Util {
   Util._();
 
-  static Future<bool> initializeApp() async {
+  static Future<void> initializeApp() async {
     await loadLocalizedValues();
     return true;
   }
@@ -39,7 +38,7 @@ abstract class Util {
     return await rootBundle.loadString("assets/" + assetPath);
   }
 
-  static Future<bool> getPersonByUserId() async {
+  static Future<void> getPersonByUserId() async {
     User currentUser = await getCurrentUser();
     final response = await PersonService.getPersonByUserId(currentUser.userId, currentUser.tenantList[0].tenantId, currentUser.accessToken);
     if (response.statusCode == 200) {
@@ -62,7 +61,7 @@ abstract class Util {
     return languageCode == null ? null : Locale(languageCode["languageCode"], countryCode["countryCode"]);
   }
 
-  static Future<bool> loginUser(String username, String password) async {
+  static Future<void> loginUser(String username, String password) async {
     final response = await AuthenticationService.loginUser(username, password);
     if (response.statusCode == 200) {
       final parsedJson = await json.decode(response.body);
@@ -74,17 +73,18 @@ abstract class Util {
       user = User.fromJson(parsedJson);
       globalStateManager = await GlobalStateManager.getInstance();
       await globalStateManager.setString("currentUser", user);
-      return true;
     }
     throw("Response.statusCode is not 200 !");
   }
 
-  static Future<bool> logoutUser() async {
+  static Future<void> logoutUser() async {
     GlobalStateManager globalStateManager = await GlobalStateManager.getInstance();
     User currentUser = await getCurrentUser();
     final response = await AuthenticationService.logoutUser(currentUser.accessToken, currentUser.tenantList[0].tenantId);
     if (response.statusCode == 200 && json.decode(response.body)["succeed"] == true) {
-      return (await globalStateManager.remove("currentUser") ? true : throw("Failed to remove currentUser from globalStateManager"));
+      if (!(await globalStateManager.remove("currentUser"))) {
+        throw("Failed to remove currentUser from globalStateManager");
+      }
     }
     throw("Failed to logout user !");
   }

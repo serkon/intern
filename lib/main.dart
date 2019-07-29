@@ -6,13 +6,10 @@ import 'util/app_localizations.dart';
 import 'util/util.dart';
 
 void main() {
-  Util.initializeApp().then((success) {
-    if (!success) {
-      throw ("Failed to initialize the app !");
-    }
+  Util.initializeApp().then((_) {
     runApp(MyApp());
   }).catchError((error) {
-    print(error);
+    throw ("Failed to initialize the app !");
   });
 }
 

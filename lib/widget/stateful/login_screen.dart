@@ -25,7 +25,7 @@ class LoginScreenState extends NotAuthenticatedScreenState {
     if ((_usernameText?.isEmpty ?? true) || (_passwordText?.isEmpty ?? true)) {
       return giveMessage(context, "Username and password cannot be empty !");
     }
-    Util.loginUser(_usernameText, _passwordText).then((loggedIn) {
+    Util.loginUser(_usernameText, _passwordText).then((_) {
       giveMessage(context, "Logged in !");
       Navigator.pushAndRemoveUntil(
         context,

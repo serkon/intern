@@ -16,7 +16,7 @@ class EmployeeInfoScreen extends StatefulWidget {
 
 class EmployeeInfoScreenState extends AuthenticatedScreenState {
   void _doLogout() {
-    Util.logoutUser().then((success) {
+    Util.logoutUser().then((_) {
       giveMessage(context, "Logout successful !");
       Navigator.pushAndRemoveUntil(
         context,
