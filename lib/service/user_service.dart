@@ -1,9 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-
 import 'package:flutter_login/util/encryption_provider.dart';
 
 class UserService {
@@ -13,11 +11,9 @@ class UserService {
 
   static Future<http.Response> loginUser(String username, String password) async{
     final String endpoint = '/login';
-    final String encryptedPassword = EncryptionProvider.encrypt(password).base64;
-    final String encryptedUsername = EncryptionProvider.encrypt(username).base64;
-
+    final String encryptedPassword = EncryptionProvider.encrypt(password);
+    final String encryptedUsername = EncryptionProvider.encrypt(username);
     final requestBody = jsonEncode({"password" : encryptedPassword, "userName" : encryptedUsername});
-
     final response = await http.post(_requestURL + endpoint,
         headers: {
           HttpHeaders.contentTypeHeader: 'application/json',
@@ -28,4 +24,3 @@ class UserService {
     return response;
   }
 }
-

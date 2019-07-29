@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login/widget/stateful/base/AuthenticatedScreenState.dart';
+import 'package:flutter_login/widget/stateless/search_box.dart';
 import 'package:flutter_login/widget/stateful/search_box.dart';
 import 'package:flutter_login/widget/stateless/blur_img.dart';
 import 'package:flutter_login/widget/stateless/login_background.dart';
@@ -8,12 +10,11 @@ final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 class EmployeeInfoScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return EmployeeInfoScreenState();
   }
 }
 
-class EmployeeInfoScreenState extends State<EmployeeInfoScreen> {
+class EmployeeInfoScreenState extends AuthenticatedScreenState {
   Widget build(BuildContext context) {
     var assetImage = new AssetImage("assets/images/sunglasses-c.png");
     var image = new Image(image: assetImage, height: 50.0, width: 330.0);
