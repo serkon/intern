@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login/widget/stateful/search_box2.dart';
+import 'package:flutter_login/widget/stateful/search_box.dart';
 import 'package:flutter_login/widget/stateless/blur_img.dart';
 import 'package:flutter_login/widget/stateless/login_background.dart';
 
@@ -26,7 +26,7 @@ class EmployeeInfoScreenState extends State<EmployeeInfoScreen> {
               Image image = Image(image: assetImage, width: 19.0, height: 17.0);
               return Container(child: image);
             }),
-            title: SearchBox2(),
+            title: SearchBox(),
             actions: <Widget>[
               IconButton(
                 icon: const Icon(Icons.menu),
@@ -34,16 +34,14 @@ class EmployeeInfoScreenState extends State<EmployeeInfoScreen> {
             ]),
         body: Stack(
           children: <Widget>[
-            Positioned.fill(child: Container(
-                color: Colors.deepPurple,
-            child:ListView(
-            children: <Widget>[
-              ExpenseImageAsset2(),
-
-            ],
-        )))
-
-
+            Positioned.fill(
+                child: Container(
+                    color: Colors.deepPurple,
+                    child: ListView(
+                      children: <Widget>[
+                        ExpenseImageAsset2(),
+                      ],
+                    )))
           ],
         ));
   }
