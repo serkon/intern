@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'package:flutter_login/util/encryption_provider.dart';
 
-import 'service_constants.dart';
+import 'package:flutter_login/config/service_constants.dart';
 
 class AuthenticationService {
   static Future<http.Response> loginUser(String username, String password) async{

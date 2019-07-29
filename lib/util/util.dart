@@ -1,19 +1,40 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_login/config/app_constants.dart';
 import 'package:flutter_login/model/user.dart';
 import 'package:flutter_login/service/authentication_service.dart';
 import 'package:flutter_login/service/person_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../main.dart';
+import 'app_localizations.dart';
 import 'encryption_provider.dart';
 
 abstract class Util {
   Util._();
 
+  static Future<bool> initializeApp() async {
+    AppLocalizations.localizedValues = await getLocalizedValues();
+    if (AppLocalizations.localizedValues == null) {
+      throw("Failed to read localized values !");
+    }
+    return true;
+  }
+
+  static Future<Map<String, dynamic>> getLocalizedValues() async {
+    String contents = await loadAsset(AppConstants.localizationAssetPath);
+    return await json.decode(contents);
+  }
+
+  static Future<String> loadAsset(String assetPath) async {
+    return await rootBundle.loadString("assets/" + assetPath);
+  }
+
   static Future<bool> getPersonByUserId() async {
     User currentUser = await getCurrentUser();
     final response = await PersonService.getPersonByUserId(currentUser.userId, currentUser.tenantList[0].tenantId, currentUser.accessToken);
     if (response.statusCode == 200) {
+      // TODO:
     }
     throw("Response.statusCode is not 200 !");
   }
@@ -25,7 +46,7 @@ abstract class Util {
     MyApp.setLocale(context, Locale(languageCode, countryCode));
   }
 
-  static Future<Locale> fetchLocale() async {
+  static Future<Locale> getLocale() async {
     final SharedPreferences globalStateManager = await SharedPreferences.getInstance();
     final String languageCode = globalStateManager.getString('languageCode');
     final String countryCode = globalStateManager.getString('countryCode');
@@ -62,7 +83,7 @@ abstract class Util {
     throw("Failed to logout user !");
   }
 
-  static Future checkIfAuthenticated() async {
+  static Future<bool> checkIfAuthenticated() async {
     final User currentUser = await getCurrentUser();
     return currentUser != null && (!(currentUser.accessToken?.isEmpty ?? true));
   }

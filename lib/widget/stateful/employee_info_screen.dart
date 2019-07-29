@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/util/util.dart';
 import 'package:flutter_login/widget/stateful/base/AuthenticatedScreenState.dart';
-import 'package:flutter_login/widget/stateful/search_box2.dart';
+import 'package:flutter_login/widget/stateless/search_box2.dart';
 import 'package:flutter_login/widget/stateful/welcome_screen.dart';
 import 'package:flutter_login/widget/stateless/give_message.dart';
 
