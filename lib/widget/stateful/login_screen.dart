@@ -32,7 +32,6 @@ class LoginScreenState extends NotAuthenticatedScreenState {
         MaterialPageRoute(builder: (context) => new EmployeeInfoScreen()),
         (Route<dynamic> route) => false,
       );
-      Util.getPersonByUserId();
     }).catchError((error) {
       giveMessage(context, "Login failed: " + error.toString());
     });
