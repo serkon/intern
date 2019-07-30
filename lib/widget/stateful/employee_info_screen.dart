@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/widget/stateful/base/AuthenticatedScreenState.dart';
 import 'package:flutter_login/widget/stateless/search_box.dart';
-import 'package:flutter_login/widget/stateful/search_box.dart';
 import 'package:flutter_login/widget/stateless/blur_img.dart';
 import 'package:flutter_login/widget/stateless/login_background.dart';
 
