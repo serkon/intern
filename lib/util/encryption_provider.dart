@@ -1,8 +1,8 @@
 import 'package:encrypt/encrypt.dart';
+import 'package:flutter_login/config/app_constants.dart';
 
 class EncryptionProvider {
-  static final _key = "Y0FlYCd1KXozTjdmSCx6Xw==";
-  static final _encrypter = Encrypter(AES(Key.fromBase64(_key.toString()), mode: AESMode.ecb));
+  static final _encrypter = Encrypter(AES(Key.fromBase64(AppConstants.encryptionProviderKey), mode: AESMode.ecb));
 
   static String encrypt(String text) {
     final encrypted = _encrypter.encrypt(text);
