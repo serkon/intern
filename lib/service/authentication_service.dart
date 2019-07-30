@@ -27,7 +27,7 @@ class AuthenticationService {
     }
   }
 
-  static Future<http.Response> logoutUser(String accessToken, String tenantId) async{
+  static Future<http.Response> logoutUser() async{
     final HttpRequestHandler httpRequestHandler = await HttpRequestHandler.getInstance();
     http.Response response;
     try {

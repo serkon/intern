@@ -83,8 +83,7 @@ abstract class Util {
 
   static Future<void> logoutUser() async {
     GlobalStateManager globalStateManager = await GlobalStateManager.getInstance();
-    User currentUser = await getCurrentUser();
-    final response = await AuthenticationService.logoutUser(currentUser.accessToken, currentUser.tenantList[0].tenantId);
+    final response = await AuthenticationService.logoutUser();
     if (response.statusCode == 200 && json.decode(response.body)["succeed"] == true) {
       if (!(await globalStateManager.remove("currentUser"))) {
         throw("Failed to remove currentUser from globalStateManager");
