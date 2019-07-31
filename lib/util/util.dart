@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_login/config/app_constants.dart';
 import 'package:flutter_login/model/user.dart';
 import 'package:flutter_login/service/authentication_service.dart';
+import 'package:flutter_login/service/http_request_handler.dart';
 import 'package:flutter_login/service/person_service.dart';
 import '../main.dart';
 import 'app_localizations.dart';
@@ -73,18 +74,23 @@ abstract class Util {
       user = User.fromJson(parsedJson);
       globalStateManager = await GlobalStateManager.getInstance();
       await globalStateManager.setString("currentUser", user);
+      HttpRequestHandler httpRequestHandler = await HttpRequestHandler.getInstance();
+      httpRequestHandler.currentUser = user;
+      return;
     }
     throw("Response.statusCode is not 200 !");
   }
 
   static Future<void> logoutUser() async {
     GlobalStateManager globalStateManager = await GlobalStateManager.getInstance();
-    User currentUser = await getCurrentUser();
-    final response = await AuthenticationService.logoutUser(currentUser.accessToken, currentUser.tenantList[0].tenantId);
+    final response = await AuthenticationService.logoutUser();
     if (response.statusCode == 200 && json.decode(response.body)["succeed"] == true) {
       if (!(await globalStateManager.remove("currentUser"))) {
         throw("Failed to remove currentUser from globalStateManager");
       }
+      HttpRequestHandler httpRequestHandler = await HttpRequestHandler.getInstance();
+      httpRequestHandler.currentUser = null;
+      return;
     }
     throw("Failed to logout user !");
   }
