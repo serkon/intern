@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import '../../config/route_constants.dart';
 import 'circled_image.dart';
 
 class ExpenseImageAsset2 extends StatelessWidget {
@@ -79,7 +80,9 @@ class ExpenseImageAsset2 extends StatelessWidget {
                         Padding(
                             padding: EdgeInsets.only(right: 10.0, bottom: 20),
                             child: RaisedButton(
-
+                                onPressed: () {
+                                  Navigator.pushNamed(context, RouteConstants.employeeInfoPhoneScreenRoute);
+                                },
                                 disabledColor: Colors.white.withOpacity(0.15),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -103,6 +106,9 @@ class ExpenseImageAsset2 extends StatelessWidget {
                         Padding(
                             padding: EdgeInsets.only(right: 10.0, bottom: 20),
                             child: RaisedButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, RouteConstants.employeeInfoMailScreenRoute);
+                                },
                                 disabledColor: Colors.white.withOpacity(0.15),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
