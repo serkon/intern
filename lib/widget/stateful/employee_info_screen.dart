@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/util/util.dart';
 import 'package:flutter_login/widget/stateful/base/AuthenticatedScreenState.dart';
+import 'package:flutter_login/widget/stateless/sample_button.dart';
 import 'package:flutter_login/widget/stateless/search_box2.dart';
 import 'package:flutter_login/widget/stateful/welcome_screen.dart';
 import 'package:flutter_login/widget/stateless/give_message.dart';
@@ -21,14 +22,14 @@ class EmployeeInfoScreen extends StatefulWidget {
 class EmployeeInfoScreenState extends AuthenticatedScreenState {
   void _doLogout() {
     Util.logoutUser().then((_) {
-      giveMessage(context, "Logout successful !");
+      Message.giveMessage(context, "Logout successful !");
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => new WelcomeScreen()),
-            (Route<dynamic> route) => false,
+        (Route<dynamic> route) => false,
       );
     }).catchError((error) {
-      giveMessage(context, "Logout failed due: " + error.toString());
+      Message.giveMessage(context, "Logout failed due: " + error.toString());
     });
   }
 
@@ -55,10 +56,56 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
           children: <Widget>[
             Positioned.fill(
                 child: Container(
-                    color: Colors.deepPurple,
+                    color: Color(0xFF1c1a34),
                     child: ListView(
                       children: <Widget>[
                         ExpenseImageAsset2(),
+                        Container(
+                          child: Row(children: [
+                            Padding(
+                                padding: EdgeInsets.only(left: 20, top: 71),
+                                child: Column(children: [
+                                  SampleButton(
+                                      'assets/custom_icons/posts.png', 'posts'),
+                                  SampleButton(
+                                      'assets/custom_icons/challenges.png',
+                                      'challenges'),
+                                  SampleButton(
+                                      'assets/custom_icons/social-groups.png',
+                                      'social groups'),
+                                  SampleButton(
+                                      'assets/custom_icons/treasure.png',
+                                      'payments'),
+                                  SampleButton('assets/custom_icons/posts.png',
+                                      'surveys'),
+                                ])),
+                            Expanded(
+                                child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Text("5 MAIN OBJECTIVES",
+                                    style: TextStyle(color: Colors.white)),
+
+                              ],
+                            )),
+                            Padding(
+                                padding: EdgeInsets.only(right: 20, top: 71),
+                                child: Column(children: [
+                                  SampleButton(
+                                      'assets/custom_icons/beer.png', 'events'),
+                                  SampleButton(
+                                      'assets/custom_icons/education.png',
+                                      'education'),
+                                  SampleButton(
+                                      'assets/custom_icons/resources.png',
+                                      'resources'),
+                                  SampleButton(
+                                      'assets/custom_icons/teams.png', 'teams'),
+                                  SampleButton('assets/custom_icons/teams.png',
+                                      'mentorship'),
+                                ])),
+                          ]),
+                        ),
                       ],
                     )))
           ],

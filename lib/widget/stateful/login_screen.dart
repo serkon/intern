@@ -7,6 +7,7 @@ import 'package:flutter_login/widget/stateless/login_background.dart';
 import 'package:flutter_login/widget/stateful/base/NotAuthenticatedScreenState.dart';
 import 'employee_info_screen.dart';
 
+
 class LoginScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -23,17 +24,17 @@ class LoginScreenState extends NotAuthenticatedScreenState {
     _usernameText = userNameController.text.trim();
     _passwordText = passwordController.text.trim();
     if ((_usernameText?.isEmpty ?? true) || (_passwordText?.isEmpty ?? true)) {
-      return giveMessage(context, "Username and password cannot be empty !");
+      return Message.giveMessage(context, "Username and password cannot be empty !");
     }
     Util.loginUser(_usernameText, _passwordText).then((_) {
-      giveMessage(context, "Logged in !");
+      Message.giveMessage(context, "Logged in !");
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => new EmployeeInfoScreen()),
         (Route<dynamic> route) => false,
       );
     }).catchError((error) {
-      giveMessage(context, "Login failed: " + error.toString());
+      Message.giveMessage(context, "Login failed: " + error.toString());
     });
   }
 

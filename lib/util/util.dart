@@ -73,6 +73,7 @@ abstract class Util {
       user = User.fromJson(parsedJson);
       globalStateManager = await GlobalStateManager.getInstance();
       await globalStateManager.setString("currentUser", user);
+      return;
     }
     throw("Response.statusCode is not 200 !");
   }
@@ -85,6 +86,7 @@ abstract class Util {
       if (!(await globalStateManager.remove("currentUser"))) {
         throw("Failed to remove currentUser from globalStateManager");
       }
+      return;
     }
     throw("Failed to logout user !");
   }

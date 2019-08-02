@@ -16,7 +16,7 @@ abstract class AuthenticatedScreenState extends State {
         );
       }
     }).catchError((error) {
-      giveMessage(context, "Error: " + error.toString());
+      Message.giveMessage(context, "Error: " + error.toString());
     });
   }
 }
