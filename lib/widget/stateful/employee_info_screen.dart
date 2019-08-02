@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login/util/error_handler.dart';
 import 'package:flutter_login/util/util.dart';
 import 'package:flutter_login/widget/stateful/base/AuthenticatedScreenState.dart';
+import 'package:flutter_login/widget/stateless/progress_bar.dart';
 import 'package:flutter_login/widget/stateless/sample_button.dart';
 import 'package:flutter_login/widget/stateless/search_box2.dart';
 import 'package:flutter_login/widget/stateful/welcome_screen.dart';
@@ -86,6 +87,11 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
                               children: <Widget>[
                                 Text("5 MAIN OBJECTIVES",
                                     style: TextStyle(color: Colors.white)),
+                                ProgressBar(1, AlwaysStoppedAnimation<Color>(Color(0xFF01cc78)), 'OPENNESS'),
+                                ProgressBar(1, AlwaysStoppedAnimation<Color>(Color(0xFF5e50e4)), 'CONSCIENTIOUSNESS'),
+                                ProgressBar(1, AlwaysStoppedAnimation<Color>(Color(0xFFfe2851)), 'EXTROVERSION'),
+                                ProgressBar(1, AlwaysStoppedAnimation<Color>(Color(0xFFffcd00)), 'AGREEABLENESS'),
+                                ProgressBar(1, AlwaysStoppedAnimation<Color>(Color(0xFF0076ff)), 'NEUROTICISM'),
 
                               ],
                             )),
