@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login/util/error_handler.dart';
 import 'package:flutter_login/util/util.dart';
 import 'package:flutter_login/widget/stateful/welcome_screen.dart';
 import 'package:flutter_login/widget/stateless/give_message.dart';
@@ -16,7 +17,7 @@ abstract class AuthenticatedScreenState extends State {
         );
       }
     }).catchError((error) {
-      Message.giveMessage(context, "Error: " + error.toString());
+      Message.giveMessage(context, ErrorHandler.handleError(error));
     });
   }
 }

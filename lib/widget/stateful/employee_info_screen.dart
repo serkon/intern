@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login/util/error_handler.dart';
 import 'package:flutter_login/util/util.dart';
 import 'package:flutter_login/widget/stateful/base/AuthenticatedScreenState.dart';
 import 'package:flutter_login/widget/stateless/sample_button.dart';
@@ -26,10 +27,10 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => new WelcomeScreen()),
-        (Route<dynamic> route) => false,
+            (Route<dynamic> route) => false,
       );
     }).catchError((error) {
-      Message.giveMessage(context, "Logout failed due: " + error.toString());
+      Message.giveMessage(context, ErrorHandler.handleError(error));
     });
   }
 

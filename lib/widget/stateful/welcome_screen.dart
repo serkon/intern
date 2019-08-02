@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login/config/route_constants.dart';
 import 'package:flutter_login/util/app_localizations.dart';
 import 'package:flutter_login/widget/stateful/login_screen.dart';
 import 'package:flutter_login/widget/stateless/expense_image_asset.dart';
@@ -63,10 +64,7 @@ class WelcomeScreenState extends NotAuthenticatedScreenState {
                   padding: EdgeInsets.only(bottom: 30, top: 10),
                   child: MaterialButton(
                       onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return LoginScreen();
-                        }));
+                        Navigator.pushNamed(context, RouteConstants.loginScreenRoute);
                       },
                       child:
                           Text('login', style: TextStyle(color: Colors.black)),
