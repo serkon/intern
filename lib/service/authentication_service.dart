@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter_login/util/error_handler.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'package:flutter_login/util/encryption_provider.dart';
@@ -14,29 +15,15 @@ class AuthenticationService {
     final String encryptedUsername = EncryptionProvider.encrypt(username);
     final requestBody = jsonEncode({"password" : encryptedPassword, "userName" : encryptedUsername});
     final HttpRequestHandler httpRequestHandler = await HttpRequestHandler.getInstance();
-    http.Response response;
-    try {
-      response = await httpRequestHandler.post(ServiceConstants.loginEndpoint,
-          body: requestBody
-      );
-      return response;
-    } catch (e) {
-      // pass to error handler
-      print("Exception: " + e.toString());
-      return null;
-    }
+    http.Response response = await httpRequestHandler.post(ServiceConstants.loginEndpoint,
+        body: requestBody
+    );
+    return response;
   }
 
   static Future<http.Response> logoutUser() async{
     final HttpRequestHandler httpRequestHandler = await HttpRequestHandler.getInstance();
-    http.Response response;
-    try {
-      response = await httpRequestHandler.post(ServiceConstants.logoutEndpoint);
-      return response;
-    } catch (e) {
-      // pass to error handler
-      print("Exception: " + e.toString());
-      return null;
-    }
+    http.Response response = await httpRequestHandler.post(ServiceConstants.logoutEndpoint);
+    return response;
   }
 }

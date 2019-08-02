@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'circled_image.dart';
 
 class ExpenseImageAsset2 extends StatelessWidget {
+  var roles = "sa";
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,7 +42,7 @@ class ExpenseImageAsset2 extends StatelessWidget {
                                 Padding(
                                     padding: EdgeInsets.only(top: 5.0),
                                     child: Text(
-                                      "roles",
+                                      roles,
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login/util/error_handler.dart';
 import 'package:flutter_login/util/util.dart';
 import 'package:flutter_login/widget/stateful/base/AuthenticatedScreenState.dart';
 import 'package:flutter_login/widget/stateless/search_box2.dart';
@@ -21,14 +22,14 @@ class EmployeeInfoScreen extends StatefulWidget {
 class EmployeeInfoScreenState extends AuthenticatedScreenState {
   void _doLogout() {
     Util.logoutUser().then((_) {
-      giveMessage(context, "Logout successful !");
+      Message.giveMessage(context, "Logout successful !");
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => new WelcomeScreen()),
             (Route<dynamic> route) => false,
       );
     }).catchError((error) {
-      giveMessage(context, "Logout failed due: " + error.toString());
+      Message.giveMessage(context, ErrorHandler.handleError(error));
     });
   }
 

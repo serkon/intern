@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:flutter_login/config/error_constants.dart';
 import 'package:flutter_login/model/user.dart';
+import 'package:flutter_login/util/error_handler.dart';
 import 'package:flutter_login/util/util.dart';
 import 'package:http/http.dart' as http;
 
@@ -33,6 +35,12 @@ class HttpRequestHandler {
     final response = await http.get(url,
       headers: defaultHeaders,
     );
+    if (response.statusCode != 200) {
+      throw ErrorConstants.serviceStatusCodeError;
+    }
+    else if (response.body?.isEmpty ?? true) {
+      throw ErrorConstants.serviceEmptyResponseBodyError;
+    }
     return response;
   }
 
@@ -51,6 +59,12 @@ class HttpRequestHandler {
         headers: defaultHeaders,
         body: body
     );
+    if (response.statusCode != 200) {
+      throw ErrorConstants.serviceStatusCodeError;
+    }
+    else if (response.body?.isEmpty ?? true) {
+      throw ErrorConstants.serviceEmptyResponseBodyError;
+    }
     return response;
   }
 }

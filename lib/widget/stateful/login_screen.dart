@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login/util/error_handler.dart';
 import 'package:flutter_login/util/util.dart';
 import 'package:flutter_login/widget/stateless/LbsText.dart';
 import 'package:flutter_login/widget/stateless/expense_image_asset.dart';
@@ -23,17 +24,17 @@ class LoginScreenState extends NotAuthenticatedScreenState {
     _usernameText = userNameController.text.trim();
     _passwordText = passwordController.text.trim();
     if ((_usernameText?.isEmpty ?? true) || (_passwordText?.isEmpty ?? true)) {
-      return giveMessage(context, "Username and password cannot be empty !");
+      return Message.giveMessage(context, "Username and password cannot be empty !");
     }
     Util.loginUser(_usernameText, _passwordText).then((_) {
-      giveMessage(context, "Logged in !");
+      Message.giveMessage(context, "Logged in !");
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => new EmployeeInfoScreen()),
         (Route<dynamic> route) => false,
       );
     }).catchError((error) {
-      giveMessage(context, "Login failed: " + error.toString());
+      Message.giveMessage(context, ErrorHandler.handleError(error));
     });
   }
 
