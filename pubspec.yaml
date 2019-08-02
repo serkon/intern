@@ -49,6 +49,21 @@ flutter:
     - assets/images/welcome_background.png
     - assets/images/journey_logo.png
     - assets/images/org.png
+    - assets/custom_icons/posts.png
+    - assets/custom_icons/challenges.png
+    - assets/custom_icons/beer.png
+    - assets/custom_icons/education.png
+    - assets/custom_icons/social-groups.png
+    - assets/custom_icons/treasure.png
+    - assets/custom_icons/resources.png
+    - assets/custom_icons/teams.png
+
+
+
+  fonts:
+    - family:  MyFlutterApp
+      fonts:
+        - asset: assets/custom_icons/MyFlutterApp.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

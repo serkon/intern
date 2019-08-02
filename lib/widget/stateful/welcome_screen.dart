@@ -31,7 +31,7 @@ class WelcomeScreenState extends NotAuthenticatedScreenState {
                 padding: EdgeInsets.only(top: 60),
                 child: ExpenseImageAsset(),
               ),
-              Text(AppLocalizations.of(context).appNameShort,
+              Text(AppLocalizations.of(context).appName,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.w700)),
