@@ -18,7 +18,7 @@ class CircleImage extends StatelessWidget {
             decoration: new BoxDecoration(
                 shape: BoxShape.circle,
                 image: new DecorationImage(
-                    fit: BoxFit.fill, image: new NetworkImage(url)))),
+                    fit: BoxFit.cover, image: new NetworkImage(url)))),
         new Text(name, style: TextStyle(color: Colors.white),),
         new Text(tittle, style: TextStyle(color: Colors.white),),
 
