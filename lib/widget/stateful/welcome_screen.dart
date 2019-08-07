@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/config/route_constants.dart';
-import 'package:flutter_login/util/app_localizations.dart';
+import 'package:flutter_login/handler/app_localizations.dart';
 import 'package:flutter_login/widget/stateful/login_screen.dart';
 import 'package:flutter_login/widget/stateless/expense_image_asset.dart';
 import 'package:flutter_login/widget/stateful/base/NotAuthenticatedScreenState.dart';
@@ -31,17 +31,20 @@ class WelcomeScreenState extends NotAuthenticatedScreenState {
                 padding: EdgeInsets.only(top: 60),
                 child: ExpenseImageAsset(),
               ),
-              Text(AppLocalizations.of(context).appName,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.w700)),
+              Padding(
+                padding: EdgeInsets.only(top: 10),
+                child: Text(AppLocalizations.of(context).appName,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w700)),
+              ),
               Expanded(
                 child: Center(
                   child: Text(
                       'This app is designed for you. Journey will be your guide',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.white.withOpacity(0.8),
                           fontSize: 12,
                           fontWeight: FontWeight.w600)),
                 ),
@@ -59,15 +62,18 @@ class WelcomeScreenState extends NotAuthenticatedScreenState {
                           borderRadius: new BorderRadius.circular(30.0)))),
               Text('already a member?',
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white)),
+                  style: TextStyle(color: Colors.white.withOpacity(0.6))),
               Container(
                   padding: EdgeInsets.only(bottom: 30, top: 10),
                   child: MaterialButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, RouteConstants.loginScreenRoute);
+                        Navigator.pushNamed(
+                            context, RouteConstants.loginScreenRoute);
                       },
-                      child:
-                          Text('login', style: TextStyle(color: Colors.black)),
+                      child: Text('login',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold)),
                       height: 40.0,
                       minWidth: 315.0,
                       color: Colors.white,

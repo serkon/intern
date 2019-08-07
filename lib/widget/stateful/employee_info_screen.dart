@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login/util/error_handler.dart';
+import 'package:flutter_login/handler/error_handler.dart';
 import 'package:flutter_login/util/util.dart';
 import 'package:flutter_login/widget/stateful/base/AuthenticatedScreenState.dart';
+import 'package:flutter_login/widget/stateless/character_image.dart';
+import 'package:flutter_login/widget/stateless/progress_bar.dart';
 import 'package:flutter_login/widget/stateless/sample_button.dart';
-import 'package:flutter_login/widget/stateless/search_box2.dart';
 import 'package:flutter_login/widget/stateful/welcome_screen.dart';
 import 'package:flutter_login/widget/stateless/give_message.dart';
 
 import 'package:flutter_login/widget/stateless/search_box.dart';
 import 'package:flutter_login/widget/stateless/blur_img.dart';
-import 'package:flutter_login/widget/stateless/login_background.dart';
+
 
 final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -37,10 +38,14 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
   Widget build(BuildContext context) {
     var assetImage = new AssetImage("assets/images/sunglasses-c.png");
     var image = new Image(image: assetImage, height: 50.0, width: 330.0);
-    return Scaffold(
+    return MaterialApp(
+
+        home: DefaultTabController(
+        length: 1,
+        child: Scaffold(
         key: scaffoldKey,
         appBar: AppBar(
-            backgroundColor: Colors.deepPurpleAccent,
+            backgroundColor: Color(0xFF1c1a34),
             leading: Builder(builder: (BuildContext context) {
               AssetImage assetImage = AssetImage('assets/images/org.png');
               Image image = Image(image: assetImage, width: 19.0, height: 17.0);
@@ -53,7 +58,9 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
                 icon: const Icon(Icons.menu),
               )
             ]),
-        body: Stack(
+        body: TabBarView(
+        children:[
+        Stack(
           children: <Widget>[
             Positioned.fill(
                 child: Container(
@@ -82,12 +89,21 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
                                 ])),
                             Expanded(
                                 child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Text("5 MAIN OBJECTIVES",
                                     style: TextStyle(color: Colors.white)),
+                               Center(
+                                 child: Column(
+                                   children: [
+                                     CharacterImage(),
+                                ProgressBar(5, AlwaysStoppedAnimation<Color>(Color(0xFF01cc78)), 'OPENNESS'),
+                                ProgressBar(3, AlwaysStoppedAnimation<Color>(Color(0xFF5e50e4)), 'CONSCIENTIOUSNESS'),
+                                ProgressBar(3, AlwaysStoppedAnimation<Color>(Color(0xFFfe2851)), 'EXTROVERSION'),
+                                ProgressBar(8, AlwaysStoppedAnimation<Color>(Color(0xFFffcd00)), 'AGREEABLENESS'),
+                                ProgressBar(4, AlwaysStoppedAnimation<Color>(Color(0xFF0076ff)), 'NEUROTICISM'),
 
-                              ],
+                               ])) ],
                             )),
                             Padding(
                                 padding: EdgeInsets.only(right: 20, top: 71),
@@ -104,12 +120,26 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
                                       'assets/custom_icons/teams.png', 'teams'),
                                   SampleButton('assets/custom_icons/teams.png',
                                       'mentorship'),
-                                ])),
-                          ]),
+                                ])),]),
                         ),
                       ],
-                    )))
+                    ))),
+
           ],
-        ));
+        )
+        ]),
+
+          bottomNavigationBar: new TabBar(
+            tabs: [
+
+              Tab(icon: new Icon(Icons.settings),)
+            ],
+            labelColor: Color(0xFF696b89),
+            unselectedLabelColor: Colors.blue,
+            indicatorSize: TabBarIndicatorSize.label,
+            indicatorPadding: EdgeInsets.all(5.0),
+            indicatorColor: Colors.red,
+          ),
+    )));
   }
 }
