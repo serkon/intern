@@ -11,5 +11,5 @@ class AppConstants {
   ];
 
   static final String encryptionProviderKey = "Y0FlYCd1KXozTjdmSCx6Xw==";
-  static final String appTitle = "JOURNEY"; // SharedPref kullan ?
+  static final String appTitle = "JOURNEY";
 }

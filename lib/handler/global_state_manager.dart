@@ -1,6 +1,6 @@
 import 'dart:convert';
+import 'package:flutter_login/util/encryption_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'encryption_provider.dart';
 
 class GlobalStateManager {
   static GlobalStateManager _instance;

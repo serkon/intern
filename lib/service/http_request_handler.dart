@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_login/config/error_constants.dart';
 import 'package:flutter_login/model/user.dart';
-import 'package:flutter_login/util/error_handler.dart';
+import 'package:flutter_login/handler/error_handler.dart';
 import 'package:flutter_login/util/util.dart';
 import 'package:http/http.dart' as http;
 
@@ -65,7 +65,7 @@ class HttpRequestHandler {
     else if (response.body?.isEmpty ?? true) {
       throw ErrorConstants.serviceEmptyResponseBodyError;
     }
-    print(response.body);
+
     return response;
   }
 }

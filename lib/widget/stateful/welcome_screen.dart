@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/config/route_constants.dart';
-import 'package:flutter_login/util/app_localizations.dart';
+import 'package:flutter_login/handler/app_localizations.dart';
 import 'package:flutter_login/widget/stateful/login_screen.dart';
 import 'package:flutter_login/widget/stateless/expense_image_asset.dart';
 import 'package:flutter_login/widget/stateful/base/NotAuthenticatedScreenState.dart';
