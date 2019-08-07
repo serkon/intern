@@ -65,6 +65,7 @@ class HttpRequestHandler {
     else if (response.body?.isEmpty ?? true) {
       throw ErrorConstants.serviceEmptyResponseBodyError;
     }
+    print(response.body);
     return response;
   }
 }
