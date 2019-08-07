@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_login/util/error_handler.dart';
+import 'package:flutter_login/handler/error_handler.dart';
 import 'package:flutter_login/widget/stateful/welcome_screen.dart';
 import 'config/app_constants.dart';
 import 'config/error_constants.dart';
-import 'util/app_localizations.dart';
-import 'util/route_handler.dart';
+import 'package:flutter_login/handler/app_localizations.dart';
+import 'package:flutter_login/handler/route_handler.dart';
 import 'util/util.dart';
 
 void main() {
