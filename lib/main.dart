@@ -47,6 +47,7 @@ class MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(),
         routes: RouteHandler.routes,
-        home: Scaffold(body: WelcomeScreen()));
+        home: Scaffold(body:
+        WelcomeScreen()));
   }
 }

@@ -58,6 +58,13 @@ flutter:
     - assets/custom_icons/treasure.png
     - assets/custom_icons/resources.png
     - assets/custom_icons/teams.png
+    - assets/images/female1.png
+    - assets/images/male1.png
+    - assets/appBar_icons/group-18.png
+    - assets/appBar_icons/group-20.png
+    - assets/appBar_icons/group-53-copy-3.png
+    - assets/appBar_icons/group-71-copy-2.png
+    - assets/appBar_icons/group-72-copy.png
 
 
 
