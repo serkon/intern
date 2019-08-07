@@ -1,0 +1,19 @@
+[
+  {
+    "tel_ad" : "Old",
+    "cep" : "work",
+    "kilit": true,
+    "tel_no": "(553) 623 65 34"
+  },
+  {
+    "tel_ad" : "France",
+    "cep" : "home",
+    "kilit": false,
+    "tel_no": "(553) 652 65 34"
+  },{
+    "tel_ad" : "France",
+    "cep" : "home",
+    "kilit": true,
+    "tel_no": "(553) 652 65 34"
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "mail_ad" : "Old",
+    "mail" : "work",
+    "kilit": true,
+    "mail_add": "deneme@logo.com.tr"
+  },{
+    "mail_ad" : "France",
+    "mail" : "work",
+    "kilit": false,
+    "mail_add": "deneme@logo.com.tr"
+  },{
+    "mail_ad" : "France",
+    "mail" : "home",
+    "kilit": false,
+    "mail_add": "deneme@logo.com.tr"
+  }
+]
