@@ -21,6 +21,7 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  flutter_slidable: "^0.5.3"
   http: ^0.12.0
   cupertino_icons: ^0.1.2
   encrypt: ^3.2.0
@@ -49,6 +50,28 @@ flutter:
     - assets/images/welcome_background.png
     - assets/images/journey_logo.png
     - assets/images/org.png
+    - assets/custom_icons/posts.png
+    - assets/custom_icons/challenges.png
+    - assets/custom_icons/beer.png
+    - assets/custom_icons/education.png
+    - assets/custom_icons/social-groups.png
+    - assets/custom_icons/treasure.png
+    - assets/custom_icons/resources.png
+    - assets/custom_icons/teams.png
+    - assets/images/female1.png
+    - assets/images/male1.png
+    - assets/appBar_icons/group-18.png
+    - assets/appBar_icons/group-20.png
+    - assets/appBar_icons/group-53-copy-3.png
+    - assets/appBar_icons/group-71-copy-2.png
+    - assets/appBar_icons/group-72-copy.png
+
+
+
+  fonts:
+    - family:  MyFlutterApp
+      fonts:
+        - asset: assets/custom_icons/MyFlutterApp.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

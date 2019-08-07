@@ -41,7 +41,6 @@ class HttpRequestHandler {
     else if (response.body?.isEmpty ?? true) {
       throw ErrorConstants.serviceEmptyResponseBodyError;
     }
-
     return response;
   }
 

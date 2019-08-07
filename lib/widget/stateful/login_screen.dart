@@ -48,7 +48,7 @@ class LoginScreenState extends NotAuthenticatedScreenState {
               child: SingleChildScrollView(
                   child: Column(children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(top: 60),
+              padding: EdgeInsets.only(top: 60, bottom: 10),
               child: ExpenseImageAsset(),
             ),
             Text('JOURNEY',
@@ -62,23 +62,24 @@ class LoginScreenState extends NotAuthenticatedScreenState {
                   'Your username and password are sent to you via e-mail',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600)),
+                      color: Colors.white.withOpacity(0.8),
+                      fontSize: 12)),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 20),
+              padding: EdgeInsets.only(top: 20, left:40, right:40),
               child: LbsText(
-                  fontSize: 16,
-                  title: "Username",
+                  fontSize: 12,
+                  title: "username",
+                  color: Colors.white.withOpacity(0.8),
                   icon: Icons.person,
                   textCont: this.userNameController),
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 20),
+              padding: EdgeInsets.only(bottom: 20, left:40, right:40),
               child: LbsText(
-                  fontSize: 16,
-                  title: "Password",
+                  fontSize: 12,
+                  title: "password",
+                  color: Colors.white.withOpacity(0.8),
                   icon: Icons.lock,
                   password: true,
                   textCont: this.passwordController),
@@ -87,7 +88,7 @@ class LoginScreenState extends NotAuthenticatedScreenState {
                 padding: EdgeInsets.only(bottom: 30, top: 10),
                 child: MaterialButton(
                     onPressed: _doLogin,
-                    child: Text('login', style: TextStyle(color: Colors.black)),
+                    child: Text('login', style: TextStyle(color: Color(0xFF363636), fontWeight: FontWeight.w900)),
                     height: 40.0,
                     minWidth: 315.0,
                     color: Colors.white,
