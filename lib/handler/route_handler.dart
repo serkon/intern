@@ -11,7 +11,7 @@ class RouteHandler {
     RouteConstants.welcomeScreenRoute: (BuildContext context) => WelcomeScreen(),
     RouteConstants.loginScreenRoute: (BuildContext context) => LoginScreen(),
     RouteConstants.employeeInfoScreenRoute: (BuildContext context) => EmployeeInfoScreen(),
-    RouteConstants.employeeInfoMailScreenRoute: (BuildContext context) => emailButton(),
+    RouteConstants.employeeInfoMailScreenRoute: (BuildContext context) => Email(),
     RouteConstants.employeeInfoPhoneScreenRoute: (BuildContext context) => PhoneCall(),
   };
 }

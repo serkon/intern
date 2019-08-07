@@ -30,6 +30,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  url_launcher: ^5.0.2
 
 
 # For information on the generic Dart part of this file, see the
@@ -58,6 +59,8 @@ flutter:
     - assets/custom_icons/treasure.png
     - assets/custom_icons/resources.png
     - assets/custom_icons/teams.png
+    - assets/data/veriler.json
+    - assets/data/mailler.json
     - assets/images/female1.png
     - assets/images/male1.png
     - assets/appBar_icons/group-18.png
