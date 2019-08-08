@@ -4,6 +4,8 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 
 class PhoneCall extends StatefulWidget {
+  PhoneCall({Key key}) : super(key: key);
+
   @override
   PhoneCallState createState() => PhoneCallState();
 }

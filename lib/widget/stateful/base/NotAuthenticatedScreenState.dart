@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/handler/error_handler.dart';
 import 'package:flutter_login/util/util.dart';
-import 'package:flutter_login/widget/stateful/employee_info_screen.dart';
+import 'package:flutter_login/widget/stateful/screens/employee_info_screen.dart';
 import 'package:flutter_login/widget/stateless/give_message.dart';
 
-import '../navigation_host.dart';
+import 'package:flutter_login/widget/stateful/screens/navigation_host.dart';
 
 abstract class NotAuthenticatedScreenState extends State {
   @override

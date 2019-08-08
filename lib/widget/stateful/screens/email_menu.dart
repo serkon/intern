@@ -4,6 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 
 class Email extends StatefulWidget {
+  Email({Key key}) : super(key: key);
 
   @override
   EmailState createState() => EmailState();

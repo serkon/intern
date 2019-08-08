@@ -6,8 +6,8 @@ import 'package:flutter_login/widget/stateless/expense_image_asset.dart';
 import 'package:flutter_login/widget/stateless/give_message.dart';
 import 'package:flutter_login/widget/stateless/login_background.dart';
 import 'package:flutter_login/widget/stateful/base/NotAuthenticatedScreenState.dart';
-import 'employee_info_screen.dart';
-import 'navigation_host.dart';
+import 'package:flutter_login/widget/stateful/screens/employee_info_screen.dart';
+import 'package:flutter_login/widget/stateful/screens/navigation_host.dart';
 
 class LoginScreen extends StatefulWidget {
   @override

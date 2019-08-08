@@ -6,7 +6,7 @@ import 'package:flutter_login/widget/stateful/base/AuthenticatedScreenState.dart
 import 'package:flutter_login/widget/stateless/character_image.dart';
 import 'package:flutter_login/widget/stateless/progress_bar.dart';
 import 'package:flutter_login/widget/stateless/sample_button.dart';
-import 'package:flutter_login/widget/stateful/welcome_screen.dart';
+import 'package:flutter_login/widget/stateful/screens/welcome_screen.dart';
 import 'package:flutter_login/widget/stateless/give_message.dart';
 
 import 'package:flutter_login/widget/stateless/search_box.dart';
