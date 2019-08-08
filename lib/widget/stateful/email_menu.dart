@@ -10,7 +10,7 @@ class Email extends StatefulWidget {
 }
 
 class EmailState extends State<Email> {
-  List tumMailler;
+  List tumMailler = new List();
 
   @override
   void initState() {

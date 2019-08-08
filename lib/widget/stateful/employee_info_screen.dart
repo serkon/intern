@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/handler/error_handler.dart';
+import 'package:flutter_login/repository/person_repository.dart';
 import 'package:flutter_login/util/util.dart';
 import 'package:flutter_login/widget/stateful/base/AuthenticatedScreenState.dart';
 import 'package:flutter_login/widget/stateless/character_image.dart';
@@ -22,6 +23,17 @@ class EmployeeInfoScreen extends StatefulWidget {
 }
 
 class EmployeeInfoScreenState extends AuthenticatedScreenState {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    PersonRepository.getPersonByUserId().then((person) {
+      print("Person code: " + person.personCode);
+    }).catchError((error) {
+      Message.giveMessage(context, ErrorHandler.handleError(error));
+    });
+  }
+
   void _doLogout() {
     Util.logoutUser().then((_) {
       Message.giveMessage(context, "Logout successful !");
@@ -39,7 +51,6 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
     var assetImage = new AssetImage("assets/images/sunglasses-c.png");
     var image = new Image(image: assetImage, height: 50.0, width: 330.0);
     return MaterialApp(
-
         home: DefaultTabController(
         length: 1,
         child: Scaffold(
@@ -58,9 +69,7 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
                 icon: const Icon(Icons.menu),
               )
             ]),
-        body: TabBarView(
-        children:[
-        Stack(
+        body:      Stack(
           children: <Widget>[
             Positioned.fill(
                 child: Container(
@@ -89,22 +98,22 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
                                 ])),
                             Expanded(
                                 child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text("5 MAIN OBJECTIVES",
-                                    style: TextStyle(color: Colors.white)),
-                               Center(
-                                 child: Column(
-                                   children: [
-                                     CharacterImage(),
-                                ProgressBar(5, AlwaysStoppedAnimation<Color>(Color(0xFF01cc78)), 'OPENNESS'),
-                                ProgressBar(3, AlwaysStoppedAnimation<Color>(Color(0xFF5e50e4)), 'CONSCIENTIOUSNESS'),
-                                ProgressBar(3, AlwaysStoppedAnimation<Color>(Color(0xFFfe2851)), 'EXTROVERSION'),
-                                ProgressBar(8, AlwaysStoppedAnimation<Color>(Color(0xFFffcd00)), 'AGREEABLENESS'),
-                                ProgressBar(4, AlwaysStoppedAnimation<Color>(Color(0xFF0076ff)), 'NEUROTICISM'),
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text("5 MAIN OBJECTIVES",
+                                        style: TextStyle(color: Colors.white)),
+                                    Center(
+                                        child: Column(
+                                            children: [
+                                              CharacterImage(),
+                                              ProgressBar(5, AlwaysStoppedAnimation<Color>(Color(0xFF01cc78)), 'OPENNESS'),
+                                              ProgressBar(3, AlwaysStoppedAnimation<Color>(Color(0xFF5e50e4)), 'CONSCIENTIOUSNESS'),
+                                              ProgressBar(3, AlwaysStoppedAnimation<Color>(Color(0xFFfe2851)), 'EXTROVERSION'),
+                                              ProgressBar(8, AlwaysStoppedAnimation<Color>(Color(0xFFffcd00)), 'AGREEABLENESS'),
+                                              ProgressBar(4, AlwaysStoppedAnimation<Color>(Color(0xFF0076ff)), 'NEUROTICISM'),
 
-                               ])) ],
-                            )),
+                                            ])) ],
+                                )),
                             Padding(
                                 padding: EdgeInsets.only(right: 20, top: 71),
                                 child: Column(children: [
@@ -126,20 +135,8 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
                     ))),
 
           ],
-        )
-        ]),
+        ),
 
-          bottomNavigationBar: new TabBar(
-            tabs: [
-
-              Tab(icon: new Icon(Icons.settings),)
-            ],
-            labelColor: Color(0xFF696b89),
-            unselectedLabelColor: Colors.blue,
-            indicatorSize: TabBarIndicatorSize.label,
-            indicatorPadding: EdgeInsets.all(5.0),
-            indicatorColor: Colors.red,
-          ),
     )));
   }
 }

@@ -9,7 +9,7 @@ class PhoneCall extends StatefulWidget {
 }
 
 class PhoneCallState extends State<PhoneCall> {
-  List tumVeriler;
+  List tumVeriler = new List();
 
   @override
   void initState() {

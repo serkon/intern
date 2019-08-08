@@ -4,6 +4,8 @@ import 'package:flutter_login/util/util.dart';
 import 'package:flutter_login/widget/stateful/employee_info_screen.dart';
 import 'package:flutter_login/widget/stateless/give_message.dart';
 
+import '../navigation_host.dart';
+
 abstract class NotAuthenticatedScreenState extends State {
   @override
   initState() {
@@ -12,7 +14,7 @@ abstract class NotAuthenticatedScreenState extends State {
       if (isAuthed) {
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => new EmployeeInfoScreen()),
+          MaterialPageRoute(builder: (context) => new NavigationHost()),
               (Route<dynamic> route) => false,
         );
       }

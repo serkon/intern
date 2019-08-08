@@ -43,17 +43,6 @@ abstract class Util {
     return await rootBundle.loadString("assets/" + assetPath);
   }
 
-  static Future<Person> getPersonByUserId() async {
-    http.Response response;
-    response = await PersonService.getPersonByUserId();
-    final parsedJson = await json.decode(response.body);
-    Person person = Person.fromJson(parsedJson);
-    GlobalStateManager globalStateManager =
-        await GlobalStateManager.getInstance();
-    await globalStateManager.setString("currentPerson", person);
-    return person;
-  }
-
   static void updateLocale(
       String languageCode, String countryCode, BuildContext context) async {
     final GlobalStateManager globalStateManager =
