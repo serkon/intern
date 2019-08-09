@@ -12,7 +12,6 @@ import 'package:flutter_login/widget/stateless/give_message.dart';
 import 'package:flutter_login/widget/stateless/search_box.dart';
 import 'package:flutter_login/widget/stateless/blur_img.dart';
 
-
 final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
 class EmployeeInfoScreen extends StatefulWidget {
@@ -40,7 +39,7 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => new WelcomeScreen()),
-            (Route<dynamic> route) => false,
+        (Route<dynamic> route) => false,
       );
     }).catchError((error) {
       Message.giveMessage(context, ErrorHandler.handleError(error));
@@ -52,91 +51,146 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
     var image = new Image(image: assetImage, height: 50.0, width: 330.0);
     return MaterialApp(
         home: DefaultTabController(
-        length: 1,
-        child: Scaffold(
-        key: scaffoldKey,
-        appBar: AppBar(
-            backgroundColor: Color(0xFF1c1a34),
-            leading: Builder(builder: (BuildContext context) {
-              AssetImage assetImage = AssetImage('assets/images/org.png');
-              Image image = Image(image: assetImage, width: 19.0, height: 17.0);
-              return Container(child: image);
-            }),
-            title: SearchBox(),
-            actions: <Widget>[
-              IconButton(
-                onPressed: _doLogout,
-                icon: const Icon(Icons.menu),
-              )
-            ]),
-        body:      Stack(
-          children: <Widget>[
-            Positioned.fill(
-                child: Container(
-                    color: Color(0xFF1c1a34),
-                    child: ListView(
-                      children: <Widget>[
-                        ExpenseImageAsset2(),
-                        Container(
-                          child: Row(children: [
-                            Padding(
-                                padding: EdgeInsets.only(left: 20, top: 71),
-                                child: Column(children: [
-                                  SampleButton(
-                                      'assets/custom_icons/posts.png', 'posts'),
-                                  SampleButton(
-                                      'assets/custom_icons/challenges.png',
-                                      'challenges'),
-                                  SampleButton(
-                                      'assets/custom_icons/social-groups.png',
-                                      'social groups'),
-                                  SampleButton(
-                                      'assets/custom_icons/treasure.png',
-                                      'payments'),
-                                  SampleButton('assets/custom_icons/posts.png',
-                                      'surveys'),
-                                ])),
-                            Expanded(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text("5 MAIN OBJECTIVES",
-                                        style: TextStyle(color: Colors.white)),
-                                    Center(
+            length: 1,
+            child: Scaffold(
+              key: scaffoldKey,
+              appBar: AppBar(
+                  backgroundColor: Color(0xFF1c1a34),
+                  leading: Builder(builder: (BuildContext context) {
+                    AssetImage assetImage = AssetImage('assets/images/org.png');
+                    Image image =
+                        Image(image: assetImage, width: 19.0, height: 17.0);
+                    return Container(child: image);
+                  }),
+                  title: SearchBox(),
+                  actions: <Widget>[
+                    IconButton(
+                      onPressed: _doLogout,
+                      icon: const Icon(Icons.menu),
+                    )
+                  ]),
+              body: Stack(
+                children: <Widget>[
+                  Positioned.fill(
+                      child: Container(
+                          color: Color(0xFF1c1a34),
+                          child: ListView(
+                            children: <Widget>[
+                              ExpenseImageAsset2(),
+                              Container(
+                                child: Row(
+                                    children: [
+                                  Padding(
+                                      padding:
+                                          EdgeInsets.only(left: 20, top: 71),
+                                      child: Column(children: [
+                                        SampleButton(
+                                            'assets/custom_icons/posts.png',
+                                            'posts'),
+                                        SampleButton(
+                                            'assets/custom_icons/challenges.png',
+                                            'challenges'),
+                                        SampleButton(
+                                            'assets/custom_icons/social-groups.png',
+                                            'social groups'),
+                                        SampleButton(
+                                            'assets/custom_icons/treasure.png',
+                                            'payments'),
+                                        SampleButton(
+                                            'assets/custom_icons/posts.png',
+                                            'surveys'),
+                                      ])),
+                                  Expanded(
+                                      child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Container(
+                                        transform: Matrix4.translationValues(
+                                            0.0, -25.0, 0.0),
                                         child: Column(
-                                            children: [
-                                              CharacterImage(),
-                                              ProgressBar(5, AlwaysStoppedAnimation<Color>(Color(0xFF01cc78)), 'OPENNESS'),
-                                              ProgressBar(3, AlwaysStoppedAnimation<Color>(Color(0xFF5e50e4)), 'CONSCIENTIOUSNESS'),
-                                              ProgressBar(3, AlwaysStoppedAnimation<Color>(Color(0xFFfe2851)), 'EXTROVERSION'),
-                                              ProgressBar(8, AlwaysStoppedAnimation<Color>(Color(0xFFffcd00)), 'AGREEABLENESS'),
-                                              ProgressBar(4, AlwaysStoppedAnimation<Color>(Color(0xFF0076ff)), 'NEUROTICISM'),
+                                          children: <Widget>[
+                                            Text("5 MAIN OBJECTIVES",
+                                                style:
+                                                TextStyle(color: Colors.white)),
+                                            ProgressBar(
+                                                5,
+                                                AlwaysStoppedAnimation<Color>(
+                                                    Color(0xFFFFFFFF)),
+                                                'due 21 August'),
+                                            Text("24/100",
+                                                style:
+                                                TextStyle(color: Colors.white))
+                                          ],
+                                        )
+                                      ,
+                                      ),
+                                      Center(
+                                          child: Column(children: [
+                                            Container(
+                                              transform: Matrix4.translationValues(
+                                                  0.0, -30.0, 0.0),
+                                              child: Column(
+                                                children: <Widget>[
+                                                  CharacterImage(),
+                                                  ProgressBar(
+                                                      5,
+                                                      AlwaysStoppedAnimation<Color>(
+                                                          Color(0xFF01cc78)),
+                                                      'OPENNESS'),
+                                                  ProgressBar(
+                                                      3,
+                                                      AlwaysStoppedAnimation<Color>(
+                                                          Color(0xFF5e50e4)),
+                                                      'CONSCIENTIOUSNESS'),
+                                                  ProgressBar(
+                                                      3,
+                                                      AlwaysStoppedAnimation<Color>(
+                                                          Color(0xFFfe2851)),
+                                                      'EXTROVERSION'),
+                                                  ProgressBar(
+                                                      8,
+                                                      AlwaysStoppedAnimation<Color>(
+                                                          Color(0xFFffcd00)),
+                                                      'AGREEABLENESS'),
+                                                  ProgressBar(
+                                                      4,
+                                                      AlwaysStoppedAnimation<Color>(
+                                                          Color(0xFF0076ff)),
+                                                      'NEUROTICISM'),
+                                                ],
+                                              )
 
-                                            ])) ],
-                                )),
-                            Padding(
-                                padding: EdgeInsets.only(right: 20, top: 71),
-                                child: Column(children: [
-                                  SampleButton(
-                                      'assets/custom_icons/beer.png', 'events'),
-                                  SampleButton(
-                                      'assets/custom_icons/education.png',
-                                      'education'),
-                                  SampleButton(
-                                      'assets/custom_icons/resources.png',
-                                      'resources'),
-                                  SampleButton(
-                                      'assets/custom_icons/teams.png', 'teams'),
-                                  SampleButton('assets/custom_icons/teams.png',
-                                      'mentorship'),
-                                ])),]),
-                        ),
-                      ],
-                    ))),
+                                            ),
 
-          ],
-        ),
-
-    )));
+                                      ]))
+                                    ],
+                                  )),
+                                  Padding(
+                                      padding:
+                                          EdgeInsets.only(right: 20, top: 71),
+                                      child: Column(children: [
+                                        SampleButton(
+                                            'assets/custom_icons/beer.png',
+                                            'events'),
+                                        SampleButton(
+                                            'assets/custom_icons/education.png',
+                                            'education'),
+                                        SampleButton(
+                                            'assets/custom_icons/resources.png',
+                                            'resources'),
+                                        SampleButton(
+                                            'assets/custom_icons/teams.png',
+                                            'teams'),
+                                        SampleButton(
+                                            'assets/custom_icons/teams.png',
+                                            'mentorship'),
+                                      ])),
+                                ]),
+                              ),
+                            ],
+                          ))),
+                ],
+              ),
+            )));
   }
 }

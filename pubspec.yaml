@@ -50,6 +50,7 @@ flutter:
     - assets/localization/tr.json
     - assets/images/welcome_background.png
     - assets/images/journey_logo.png
+    - assets/images/employee_profil.jpg
     - assets/images/org.png
     - assets/custom_icons/posts.png
     - assets/custom_icons/challenges.png

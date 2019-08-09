@@ -15,7 +15,7 @@ class ExpenseImageAsset2 extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/journey_logo.png'),
+            image: AssetImage('assets/images/employee_profil.jpg'),
             fit: BoxFit.cover,
           ),
         ),
@@ -23,7 +23,7 @@ class ExpenseImageAsset2 extends StatelessWidget {
             filter: ImageFilter.blur(sigmaX: 5, sigmaY: 0),
             child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 5.0),
-                color: Colors.deepPurpleAccent.withOpacity(0.5),
+                color: Color(0xFF463D63).withOpacity(0.61),
                 child: Column(children: <Widget>[
                   Expanded(
                       child: Row(
@@ -80,9 +80,11 @@ class ExpenseImageAsset2 extends StatelessWidget {
                         Padding(
                             padding: EdgeInsets.only(right: 10.0, bottom: 20),
                             child: RaisedButton(
+                                shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(4.0)),
                                 onPressed: () {
                                   Navigator.pushNamed(context, RouteConstants.employeeInfoPhoneScreenRoute);
                                 },
+                                color: Colors.white.withOpacity(0.15),
                                 disabledColor: Colors.white.withOpacity(0.15),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -91,14 +93,16 @@ class ExpenseImageAsset2 extends StatelessWidget {
                                         padding: EdgeInsets.only(top: 5.0),
                                         child: Icon(
                                           Icons.call,
+                                          color: Colors.white.withOpacity(0.6),
                                         )),
                                     Padding(
-                                        padding: EdgeInsets.only(top: 5.0),
+                                        padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
                                         child: Text(
                                           "call",
                                           style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white.withOpacity(0.65),
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w900,
                                           ),
                                         )),
                                   ],
@@ -106,9 +110,11 @@ class ExpenseImageAsset2 extends StatelessWidget {
                         Padding(
                             padding: EdgeInsets.only(right: 10.0, bottom: 20),
                             child: RaisedButton(
+                                shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(4.0)),
                                 onPressed: () {
                                   Navigator.pushNamed(context, RouteConstants.employeeInfoMailScreenRoute);
                                 },
+                                color: Colors.white.withOpacity(0.15),
                                 disabledColor: Colors.white.withOpacity(0.15),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -117,14 +123,16 @@ class ExpenseImageAsset2 extends StatelessWidget {
                                         padding: EdgeInsets.only(top: 5.0),
                                         child: Icon(
                                           Icons.mail,
+                                          color: Colors.white.withOpacity(0.6),
                                         )),
                                     Padding(
-                                        padding: EdgeInsets.only(top: 5.0),
+                                        padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
                                         child: Text(
                                           "e-mail",
                                           style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white.withOpacity(0.65),
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w900,
                                           ),
                                         )),
                                   ],
@@ -132,6 +140,7 @@ class ExpenseImageAsset2 extends StatelessWidget {
                         Padding(
                             padding: EdgeInsets.only(right: 10.0, bottom: 20),
                             child: RaisedButton(
+                                shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(4.0)),
                                 disabledColor: Colors.white.withOpacity(0.15),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -140,14 +149,16 @@ class ExpenseImageAsset2 extends StatelessWidget {
                                         padding: EdgeInsets.only(top: 5.0),
                                         child: Icon(
                                           Icons.featured_video,
+                                          color: Colors.white.withOpacity(0.6),
                                         )),
                                     Padding(
-                                        padding: EdgeInsets.only(top: 5.0),
+                                        padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
                                         child: Text(
                                           "see video",
                                           style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white.withOpacity(0.65),
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w900,
                                           ),
                                         )),
                                   ],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CircleImage extends StatelessWidget {
   var url =
-      "https://i.dailymail.co.uk/i/pix/2015/09/01/18/2BE1E88B00000578-3218613-image-m-5_1441127035222.jpg";
+      "https://i.elmaelma.com/2/750/430/storage/files/images/2019/08/04/beren-saatin-kurban-bayrami-paylasi-0JqH_cover.jpg";
   var name = "Sample Profile";
   var tittle = "Developer";
 
