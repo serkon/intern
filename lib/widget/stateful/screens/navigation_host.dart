@@ -15,6 +15,7 @@ class NavigationHost extends StatefulWidget {
 
 class NavigationHostState extends State<NavigationHost> {
   int selectedIndex = 0;
+  List<int> _history = [0];
   final widgetOptions = [
     new EmployeeInfoScreen(),
     new Email(),
@@ -58,8 +59,13 @@ class NavigationHostState extends State<NavigationHost> {
   }
 
   void onItemTapped(int index) {
-    setState(() {
-      selectedIndex = index;
+    _history.add(index);
+    setState(() => selectedIndex = index);
+    Navigator.push(context, new BottomNavigationRoute()).then((x) {
+      _history.removeLast();
+      setState(() => selectedIndex = _history.last);
     });
   }
 }
+
+class BottomNavigationRoute extends Route<void> {}
