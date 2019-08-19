@@ -24,10 +24,8 @@ class EmployeeInfoScreen extends StatefulWidget {
 class EmployeeInfoScreenState extends AuthenticatedScreenState {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     PersonRepository.getPersonByUserId().then((person) {
-      // print("Person code: " + person.personCode);
     }).catchError((error) {
       Message.giveMessage(context, ErrorHandler.handleError(error));
     });
