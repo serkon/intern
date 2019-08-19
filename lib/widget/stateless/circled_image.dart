@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login/config/asset_constants.dart';
 
 class CircleImage extends StatelessWidget {
-  var url =
-      "https://i.elmaelma.com/2/750/430/storage/files/images/2019/08/04/beren-saatin-kurban-bayrami-paylasi-0JqH_cover.jpg";
+  var url = AssetConstants.defaultProfilePictureURL;
   var name = "Sample Profile";
   var tittle = "Developer";
 

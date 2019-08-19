@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login/config/asset_constants.dart';
 
 class SampleButton extends StatelessWidget {
-  var path = 'assets/images/org.png';
+  var path = AssetConstants.orgAssetPath;
   var name = 'sample';
 
   SampleButton(this.path, this.name);

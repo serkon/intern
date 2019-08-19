@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login/config/asset_constants.dart';
 
 class Background extends StatelessWidget {
   @override
@@ -8,7 +9,7 @@ class Background extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/welcome_background.png"),
+              image: AssetImage(AssetConstants.welcomeBackgroundAssetPath),
               fit: BoxFit.cover,
             ),
           ),

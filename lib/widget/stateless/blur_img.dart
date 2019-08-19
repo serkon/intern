@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_login/config/asset_constants.dart';
 import 'package:flutter_login/widget/stateful/screens/email_menu.dart';
 import 'package:flutter_login/widget/stateful/screens/phone_call.dart';
 import 'circled_image.dart';
@@ -15,7 +16,7 @@ class ExpenseImageAsset2 extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/employee_profil.jpg'),
+            image: AssetImage(AssetConstants.employeeProfileAssetPath),
             fit: BoxFit.cover,
           ),
         ),

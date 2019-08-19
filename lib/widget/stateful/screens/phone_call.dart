@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login/config/asset_constants.dart';
 import 'dart:convert';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
@@ -175,7 +176,7 @@ class PhoneCallState extends State<PhoneCall> {
   Future<List> veriOku() async {
     var gelenJson =
         await DefaultAssetBundle.of(context) //json içindeki veriyi tutuyoruz.
-            .loadString("assets/data/veriler.json");
+            .loadString(AssetConstants.verilerAssetPath);
 
     List bilgiList = json.decode(gelenJson
         .toString()); //jsondan aldığım bilgiyi liste formatına geçirdik.

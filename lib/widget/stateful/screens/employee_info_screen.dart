@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login/config/asset_constants.dart';
 import 'package:flutter_login/handler/error_handler.dart';
 import 'package:flutter_login/repository/person_repository.dart';
 import 'package:flutter_login/util/util.dart';
@@ -45,7 +46,7 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
   }
 
   Widget build(BuildContext context) {
-    var assetImage = new AssetImage("assets/images/sunglasses-c.png");
+    var assetImage = new AssetImage(AssetConstants.sunglassesAssetPath);
     var image = new Image(image: assetImage, height: 50.0, width: 330.0);
     return MaterialApp(
         home: DefaultTabController(
@@ -55,7 +56,7 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
               appBar: AppBar(
                   backgroundColor: Color(0xFF1c1a34),
                   leading: Builder(builder: (BuildContext context) {
-                    AssetImage assetImage = AssetImage('assets/images/org.png');
+                    AssetImage assetImage = AssetImage(AssetConstants.orgAssetPath);
                     Image image =
                         Image(image: assetImage, width: 19.0, height: 17.0);
                     return Container(child: image);
@@ -83,19 +84,19 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
                                           EdgeInsets.only(left: 20, top: 71),
                                       child: Column(children: [
                                         SampleButton(
-                                            'assets/custom_icons/posts.png',
+                                            AssetConstants.postsAssetPath,
                                             'posts'),
                                         SampleButton(
-                                            'assets/custom_icons/challenges.png',
+                                            AssetConstants.challengesAssetPath,
                                             'challenges'),
                                         SampleButton(
-                                            'assets/custom_icons/social-groups.png',
+                                            AssetConstants.socialGroupsAssetPath,
                                             'social groups'),
                                         SampleButton(
-                                            'assets/custom_icons/treasure.png',
+                                            AssetConstants.treasureAssetPath,
                                             'payments'),
                                         SampleButton(
-                                            'assets/custom_icons/posts.png',
+                                            AssetConstants.postsAssetPath,
                                             'surveys'),
                                       ])),
                                   Expanded(
@@ -168,19 +169,19 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
                                           EdgeInsets.only(right: 20, top: 71),
                                       child: Column(children: [
                                         SampleButton(
-                                            'assets/custom_icons/beer.png',
+                                            AssetConstants.beerAssetPath,
                                             'events'),
                                         SampleButton(
-                                            'assets/custom_icons/education.png',
+                                            AssetConstants.educationAssetPath,
                                             'education'),
                                         SampleButton(
-                                            'assets/custom_icons/resources.png',
+                                           AssetConstants.resourcesAssetPath,
                                             'resources'),
                                         SampleButton(
-                                            'assets/custom_icons/teams.png',
+                                            AssetConstants.teamsAssetPath,
                                             'teams'),
                                         SampleButton(
-                                            'assets/custom_icons/teams.png',
+                                            AssetConstants.teamsAssetPath,
                                             'mentorship'),
                                       ])),
                                 ]),
