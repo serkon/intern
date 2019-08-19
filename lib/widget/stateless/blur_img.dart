@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_login/widget/stateful/screens/email_menu.dart';
+import 'package:flutter_login/widget/stateful/screens/phone_call.dart';
 
 import '../../config/route_constants.dart';
 import 'circled_image.dart';
@@ -82,7 +84,11 @@ class ExpenseImageAsset2 extends StatelessWidget {
                             child: RaisedButton(
                                 shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(4.0)),
                                 onPressed: () {
-                                  Navigator.pushNamed(context, RouteConstants.employeeInfoPhoneScreenRoute);
+                                  Navigator.push(
+                                      context,
+                                      new MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                          new PhoneCall()));
                                 },
                                 color: Colors.white.withOpacity(0.15),
                                 disabledColor: Colors.white.withOpacity(0.15),
@@ -112,8 +118,11 @@ class ExpenseImageAsset2 extends StatelessWidget {
                             child: RaisedButton(
                                 shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(4.0)),
                                 onPressed: () {
-                                  Navigator.pushNamed(context, RouteConstants.employeeInfoMailScreenRoute);
-                                },
+                                  Navigator.push(
+                                      context,
+                                      new MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                          new Email()));                                },
                                 color: Colors.white.withOpacity(0.15),
                                 disabledColor: Colors.white.withOpacity(0.15),
                                 child: Column(
