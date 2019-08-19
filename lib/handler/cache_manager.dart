@@ -13,7 +13,6 @@ abstract class CacheManager {
   static Future<Map<String, dynamic>> fetchFromCache(String key) async {
     GlobalStateManager globalStateManager = await GlobalStateManager.getInstance();
     Map<String, dynamic> cachedData = await globalStateManager.getString(key);
-    print("Returning from cache !");
     return cachedData;
   }
 }

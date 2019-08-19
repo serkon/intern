@@ -19,7 +19,6 @@ class PersonService {
     http.Response response;
     response = await PersonService._getPersonByUserId();
     final parsedJson = await json.decode(response.body);
-    print("Returning from service !");
     return Person.fromJson(parsedJson);
   }
 }

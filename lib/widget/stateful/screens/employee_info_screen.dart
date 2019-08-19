@@ -27,7 +27,7 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
     // TODO: implement initState
     super.initState();
     PersonRepository.getPersonByUserId().then((person) {
-      print("Person code: " + person.personCode);
+      // print("Person code: " + person.personCode);
     }).catchError((error) {
       Message.giveMessage(context, ErrorHandler.handleError(error));
     });

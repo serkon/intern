@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_login/widget/stateful/screens/phone_call.dart';
 import 'email_menu.dart';
@@ -59,9 +60,17 @@ class NavigationHostState extends State<NavigationHost> {
   }
 
   void onItemTapped(int index) {
+    if (_history.contains(index)) {
+      _history.remove(index);
+    }
     _history.add(index);
     setState(() => selectedIndex = index);
-    Navigator.push(context, new BottomNavigationRoute()).then((x) {
+    Navigator.push(context, new BottomNavigationRoute()).then((_) {
+      if (_history.length == 1) {
+        SystemChannels.platform.invokeMethod('SystemNavigator.pop'); // Exit app
+        return;
+      }
+
       _history.removeLast();
       setState(() => selectedIndex = _history.last);
     });
