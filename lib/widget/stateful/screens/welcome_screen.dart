@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login/config/asset_constants.dart';
 import 'package:flutter_login/config/route_constants.dart';
 import 'package:flutter_login/handler/app_localizations.dart';
-import 'package:flutter_login/widget/stateful/login_screen.dart';
+import 'package:flutter_login/widget/stateful/screens/login_screen.dart';
 import 'package:flutter_login/widget/stateless/expense_image_asset.dart';
 import 'package:flutter_login/widget/stateful/base/NotAuthenticatedScreenState.dart';
 
@@ -21,7 +22,7 @@ class WelcomeScreenState extends NotAuthenticatedScreenState {
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/welcome_background.png"),
+              image: AssetImage(AssetConstants.welcomeBackgroundAssetPath),
               fit: BoxFit.cover,
             ),
           ),

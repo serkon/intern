@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/config/route_constants.dart';
-import 'package:flutter_login/widget/stateful/email_menu.dart';
-import 'package:flutter_login/widget/stateful/employee_info_screen.dart';
-import 'package:flutter_login/widget/stateful/login_screen.dart';
-import 'package:flutter_login/widget/stateful/phone_call.dart';
-import 'package:flutter_login/widget/stateful/welcome_screen.dart';
+import 'package:flutter_login/widget/stateful/screens/email_menu.dart';
+import 'package:flutter_login/widget/stateful/screens/employee_info_screen.dart';
+import 'package:flutter_login/widget/stateful/screens/login_screen.dart';
+import 'package:flutter_login/widget/stateful/screens/phone_call.dart';
+import 'package:flutter_login/widget/stateful/screens/welcome_screen.dart';
 
 class RouteHandler {
   static final Map<String, WidgetBuilder> routes = {
