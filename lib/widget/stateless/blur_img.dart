@@ -1,13 +1,22 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_login/config/asset_constants.dart';
+import 'package:flutter_login/model/person.dart';
 import 'package:flutter_login/widget/stateful/screens/email_menu.dart';
 import 'package:flutter_login/widget/stateful/screens/phone_call.dart';
+
 import 'circled_image.dart';
 
 class ExpenseImageAsset2 extends StatelessWidget {
   var roles = "roles";
+  Person person;
+
+  ExpenseImageAsset2(Person user) {
+    if (user != null) {
+      this.person = user;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +25,7 @@ class ExpenseImageAsset2 extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(AssetConstants.employeeProfileAssetPath),
+            image: new MemoryImage(base64Decode(this.person.personImage)),
             fit: BoxFit.cover,
           ),
         ),
@@ -30,148 +39,154 @@ class ExpenseImageAsset2 extends StatelessWidget {
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                        RaisedButton(
-                            disabledColor: Colors.white.withOpacity(0.0),
-                            onPressed: null,
+                            RaisedButton(
+                                disabledColor: Colors.white.withOpacity(0.0),
+                                onPressed: null,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    Padding(
+                                        padding: EdgeInsets.only(top: 15.0),
+                                        child: Icon(
+                                          Icons.bookmark,
+                                        )),
+                                    Padding(
+                                        padding: EdgeInsets.only(top: 5.0),
+                                        child: Text(
+                                          roles,
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        )),
+                                  ],
+                                )),
+                            CircleImage(person),
+                            RaisedButton(
+                                disabledColor: Colors.white.withOpacity(0.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    Padding(
+                                        padding: EdgeInsets.only(top: 15.0),
+                                        child: Icon(
+                                          Icons.account_circle,
+                                        )),
+                                    Padding(
+                                        padding: EdgeInsets.only(top: 15.0),
+                                        child: Text(
+                                          "about",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        )),
+                                  ],
+                                ))
+                          ])),
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: <
+                      Widget>[
+                    Padding(
+                        padding: EdgeInsets.only(right: 10.0, bottom: 20),
+                        child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(4.0)),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  new MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                      new PhoneCall()));
+                            },
+                            color: Colors.white.withOpacity(0.15),
+                            disabledColor: Colors.white.withOpacity(0.15),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
-                                Padding(
-                                    padding: EdgeInsets.only(top: 15.0),
-                                    child: Icon(
-                                      Icons.bookmark,
-                                    )),
                                 Padding(
                                     padding: EdgeInsets.only(top: 5.0),
+                                    child: Icon(
+                                      Icons.call,
+                                      color: Colors.white.withOpacity(0.6),
+                                    )),
+                                Padding(
+                                    padding:
+                                    EdgeInsets.only(top: 5.0, bottom: 5.0),
                                     child: Text(
-                                      roles,
+                                      "call",
                                       style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white.withOpacity(0.65),
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w900,
                                       ),
                                     )),
                               ],
-                            )),
-                        CircleImage(),
-                        RaisedButton(
-                            disabledColor: Colors.white.withOpacity(0.0),
+                            ))),
+                    Padding(
+                        padding: EdgeInsets.only(right: 10.0, bottom: 20),
+                        child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(4.0)),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  new MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                      new Email()));
+                            },
+                            color: Colors.white.withOpacity(0.15),
+                            disabledColor: Colors.white.withOpacity(0.15),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
                                 Padding(
-                                    padding: EdgeInsets.only(top: 15.0),
+                                    padding: EdgeInsets.only(top: 5.0),
                                     child: Icon(
-                                      Icons.account_circle,
+                                      Icons.mail,
+                                      color: Colors.white.withOpacity(0.6),
                                     )),
                                 Padding(
-                                    padding: EdgeInsets.only(top: 15.0),
+                                    padding:
+                                    EdgeInsets.only(top: 5.0, bottom: 5.0),
                                     child: Text(
-                                      "about",
+                                      "e-mail",
                                       style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white.withOpacity(0.65),
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w900,
                                       ),
                                     )),
                               ],
-                            ))
-                      ])),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                            padding: EdgeInsets.only(right: 10.0, bottom: 20),
-                            child: RaisedButton(
-                                shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(4.0)),
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      new MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                          new PhoneCall()));
-                                },
-                                color: Colors.white.withOpacity(0.15),
-                                disabledColor: Colors.white.withOpacity(0.15),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    Padding(
-                                        padding: EdgeInsets.only(top: 5.0),
-                                        child: Icon(
-                                          Icons.call,
-                                          color: Colors.white.withOpacity(0.6),
-                                        )),
-                                    Padding(
-                                        padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-                                        child: Text(
-                                          "call",
-                                          style: TextStyle(
-                                            color: Colors.white.withOpacity(0.65),
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w900,
-                                          ),
-                                        )),
-                                  ],
-                                ))),
-                        Padding(
-                            padding: EdgeInsets.only(right: 10.0, bottom: 20),
-                            child: RaisedButton(
-                                shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(4.0)),
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      new MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                          new Email()));                                },
-                                color: Colors.white.withOpacity(0.15),
-                                disabledColor: Colors.white.withOpacity(0.15),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    Padding(
-                                        padding: EdgeInsets.only(top: 5.0),
-                                        child: Icon(
-                                          Icons.mail,
-                                          color: Colors.white.withOpacity(0.6),
-                                        )),
-                                    Padding(
-                                        padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-                                        child: Text(
-                                          "e-mail",
-                                          style: TextStyle(
-                                            color: Colors.white.withOpacity(0.65),
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w900,
-                                          ),
-                                        )),
-                                  ],
-                                ))),
-                        Padding(
-                            padding: EdgeInsets.only(right: 10.0, bottom: 20),
-                            child: RaisedButton(
-                                shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(4.0)),
-                                disabledColor: Colors.white.withOpacity(0.15),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    Padding(
-                                        padding: EdgeInsets.only(top: 5.0),
-                                        child: Icon(
-                                          Icons.featured_video,
-                                          color: Colors.white.withOpacity(0.6),
-                                        )),
-                                    Padding(
-                                        padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-                                        child: Text(
-                                          "see video",
-                                          style: TextStyle(
-                                            color: Colors.white.withOpacity(0.65),
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w900,
-                                          ),
-                                        )),
-                                  ],
-                                ))),
-                      ])
+                            ))),
+                    Padding(
+                        padding: EdgeInsets.only(right: 10.0, bottom: 20),
+                        child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(4.0)),
+                            disabledColor: Colors.white.withOpacity(0.15),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Padding(
+                                    padding: EdgeInsets.only(top: 5.0),
+                                    child: Icon(
+                                      Icons.featured_video,
+                                      color: Colors.white.withOpacity(0.6),
+                                    )),
+                                Padding(
+                                    padding:
+                                    EdgeInsets.only(top: 5.0, bottom: 5.0),
+                                    child: Text(
+                                      "see video",
+                                      style: TextStyle(
+                                        color: Colors.white.withOpacity(0.65),
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w900,
+                                      ),
+                                    )),
+                              ],
+                            ))),
+                  ])
                 ]))));
   }
 }
