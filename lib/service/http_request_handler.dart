@@ -22,27 +22,30 @@ class HttpRequestHandler {
   }
 
   Future<http.Response> get(String url, {Map<String, String> headers}) async {
-    await http.get(url,
+    http.Response response;
+    try {
+      response = await http.get(url,
         headers: generateHeaders(headers),
-    ).then((response) {
+      );
       checkResponse(response);
-      return response;
-    }).catchError((err) {
-      ErrorHandler.handleError(err);
-    });
-    return null;
+    } catch (error) {
+      ErrorHandler.handleError(error);
+    }
+    return response;
   }
 
   Future<http.Response> post(String url, {Map<String, String> headers, body}) async {
-    await http.post(url,
-        headers: generateHeaders(headers), body: body
-    ).then((response) {
+    http.Response response;
+    try {
+      response = await http.post(url,
+          headers: generateHeaders(headers),
+          body: body
+      );
       checkResponse(response);
-      return response;
-    }).catchError((err) {
-      ErrorHandler.handleError(err);
-    });
-    return null;
+    } catch (error) {
+      ErrorHandler.handleError(error);
+    }
+    return response;
   }
 
   void checkResponse(http.Response response) {

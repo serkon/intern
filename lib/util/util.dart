@@ -8,6 +8,7 @@ import 'package:flutter_login/model/user.dart';
 import 'package:flutter_login/service/authentication_service.dart';
 import 'package:flutter_login/service/http_request_handler.dart';
 import 'package:flutter_login/service/person_service.dart';
+import 'package:flutter_login/widget/stateful/screens/welcome_screen.dart';
 import '../main.dart';
 import 'package:flutter_login/handler/app_localizations.dart';
 import 'package:flutter_login/handler/global_state_manager.dart';
@@ -82,19 +83,23 @@ abstract class Util {
   }
 
   static Future<void> logoutUser() async {
-    http.Response response;
-    GlobalStateManager globalStateManager =
-        await GlobalStateManager.getInstance();
-    response = await AuthenticationService.logoutUser();
-    if (json.decode(response.body)["succeed"] == true) {
-      if (!(await globalStateManager.remove("currentUser"))) {
-        throw (ErrorConstants.globalStateManagerFailedToRemoveCurrentUser);
-      }
-      HttpRequestHandler httpRequestHandler =
-          await HttpRequestHandler.getInstance();
-      httpRequestHandler.currentUser = null;
-      return;
+    await logoutLocally();
+    http.Response response = await AuthenticationService.logoutUser();
+    if (response == null || json.decode(response.body)["succeed"] != true)
+    {
+      throw "Failed to contact the server, logging out locally!";
     }
+  }
+
+  static Future logoutLocally() async {
+    GlobalStateManager globalStateManager =
+    await GlobalStateManager.getInstance();
+    if (!(await globalStateManager.remove("currentUser"))) {
+      throw (ErrorConstants.globalStateManagerFailedToRemoveCurrentUser);
+    }
+    HttpRequestHandler httpRequestHandler =
+        await HttpRequestHandler.getInstance();
+    httpRequestHandler.currentUser = null;
   }
 
   static Future<bool> checkIfAuthenticated() async {

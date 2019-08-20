@@ -14,8 +14,6 @@ import 'package:flutter_login/widget/stateless/progress_bar.dart';
 import 'package:flutter_login/widget/stateless/sample_button.dart';
 import 'package:flutter_login/widget/stateless/search_box.dart';
 
-final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
 class EmployeeInfoScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -35,13 +33,14 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
   void _doLogout() {
     Util.logoutUser().then((_) {
       Message.giveMessage(context, "Logout successful !");
+    }).catchError((error) {
+      Message.giveMessage(context, ErrorHandler.handleError(error));
+    }).whenComplete(() {
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => new WelcomeScreen()),
-        (Route<dynamic> route) => false,
+            (Route<dynamic> route) => false,
       );
-    }).catchError((error) {
-      Message.giveMessage(context, ErrorHandler.handleError(error));
     });
   }
 
@@ -58,7 +57,6 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
         home: DefaultTabController(
             length: 1,
             child: Scaffold(
-              key: scaffoldKey,
               appBar: AppBar(
                   backgroundColor: Color(0xFF1c1a34),
                   leading: Builder(builder: (BuildContext context) {
