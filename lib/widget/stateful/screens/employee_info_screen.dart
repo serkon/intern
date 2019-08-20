@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/config/asset_constants.dart';
 import 'package:flutter_login/handler/error_handler.dart';
+import 'package:flutter_login/model/person.dart';
+import 'package:flutter_login/model/user.dart';
 import 'package:flutter_login/repository/person_repository.dart';
 import 'package:flutter_login/util/util.dart';
 import 'package:flutter_login/widget/stateful/base/AuthenticatedScreenState.dart';
+import 'package:flutter_login/widget/stateful/screens/welcome_screen.dart';
+import 'package:flutter_login/widget/stateless/blur_img.dart';
 import 'package:flutter_login/widget/stateless/character_image.dart';
+import 'package:flutter_login/widget/stateless/give_message.dart';
 import 'package:flutter_login/widget/stateless/progress_bar.dart';
 import 'package:flutter_login/widget/stateless/sample_button.dart';
-import 'package:flutter_login/widget/stateful/screens/welcome_screen.dart';
-import 'package:flutter_login/widget/stateless/give_message.dart';
-
 import 'package:flutter_login/widget/stateless/search_box.dart';
-import 'package:flutter_login/widget/stateless/blur_img.dart';
 
 final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -26,8 +27,7 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
   @override
   void initState() {
     super.initState();
-    PersonRepository.getPersonByUserId().then((person) {
-    }).catchError((error) {
+    PersonRepository.getPersonByUserId().then((person) {}).catchError((error) {
       Message.giveMessage(context, ErrorHandler.handleError(error));
     });
   }
@@ -45,6 +45,12 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
     });
   }
 
+  User currentUser;
+
+  Future<Person> getUserInfo() {
+    return PersonRepository.getPersonByUserId();
+  }
+
   Widget build(BuildContext context) {
     var assetImage = new AssetImage(AssetConstants.sunglassesAssetPath);
     var image = new Image(image: assetImage, height: 50.0, width: 330.0);
@@ -56,7 +62,8 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
               appBar: AppBar(
                   backgroundColor: Color(0xFF1c1a34),
                   leading: Builder(builder: (BuildContext context) {
-                    AssetImage assetImage = AssetImage(AssetConstants.orgAssetPath);
+                    AssetImage assetImage =
+                    AssetImage(AssetConstants.orgAssetPath);
                     Image image =
                         Image(image: assetImage, width: 19.0, height: 17.0);
                     return Container(child: image);
@@ -75,10 +82,17 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
                           color: Color(0xFF1c1a34),
                           child: ListView(
                             children: <Widget>[
-                              ExpenseImageAsset2(),
+                              FutureBuilder<Person>(
+                                  future: getUserInfo(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.done)
+                                      return ExpenseImageAsset2(snapshot.data);
+                                    else
+                                      return CircularProgressIndicator();
+                                  }),
                               Container(
-                                child: Row(
-                                    children: [
+                                child: Row(children: [
                                   Padding(
                                       padding:
                                           EdgeInsets.only(left: 20, top: 71),
@@ -90,7 +104,8 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
                                             AssetConstants.challengesAssetPath,
                                             'challenges'),
                                         SampleButton(
-                                            AssetConstants.socialGroupsAssetPath,
+                                            AssetConstants
+                                                .socialGroupsAssetPath,
                                             'social groups'),
                                         SampleButton(
                                             AssetConstants.treasureAssetPath,
@@ -109,58 +124,60 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
                                         child: Column(
                                           children: <Widget>[
                                             Text("5 MAIN OBJECTIVES",
-                                                style:
-                                                TextStyle(color: Colors.white)),
+                                                style: TextStyle(
+                                                    color: Colors.white)),
                                             ProgressBar(
                                                 5,
                                                 AlwaysStoppedAnimation<Color>(
                                                     Color(0xFFFFFFFF)),
                                                 'due 21 August'),
                                             Text("24/100",
-                                                style:
-                                                TextStyle(color: Colors.white))
+                                                style: TextStyle(
+                                                    color: Colors.white))
                                           ],
-                                        )
-                                      ,
+                                        ),
                                       ),
                                       Center(
                                           child: Column(children: [
                                             Container(
-                                              transform: Matrix4.translationValues(
-                                                  0.0, -30.0, 0.0),
-                                              child: Column(
-                                                children: <Widget>[
-                                                  CharacterImage(),
-                                                  ProgressBar(
-                                                      5,
-                                                      AlwaysStoppedAnimation<Color>(
-                                                          Color(0xFF01cc78)),
-                                                      'OPENNESS'),
-                                                  ProgressBar(
-                                                      3,
-                                                      AlwaysStoppedAnimation<Color>(
-                                                          Color(0xFF5e50e4)),
-                                                      'CONSCIENTIOUSNESS'),
-                                                  ProgressBar(
-                                                      3,
-                                                      AlwaysStoppedAnimation<Color>(
-                                                          Color(0xFFfe2851)),
-                                                      'EXTROVERSION'),
-                                                  ProgressBar(
-                                                      8,
-                                                      AlwaysStoppedAnimation<Color>(
-                                                          Color(0xFFffcd00)),
-                                                      'AGREEABLENESS'),
-                                                  ProgressBar(
-                                                      4,
-                                                      AlwaysStoppedAnimation<Color>(
-                                                          Color(0xFF0076ff)),
-                                                      'NEUROTICISM'),
-                                                ],
-                                              )
-
-                                            ),
-
+                                                transform:
+                                                Matrix4.translationValues(
+                                                    0.0, -30.0, 0.0),
+                                                child: Column(
+                                                  children: <Widget>[
+                                                    CharacterImage(),
+                                                    ProgressBar(
+                                                        5,
+                                                        AlwaysStoppedAnimation<
+                                                            Color>(
+                                                            Color(0xFF01cc78)),
+                                                        'OPENNESS'),
+                                                    ProgressBar(
+                                                        3,
+                                                        AlwaysStoppedAnimation<
+                                                            Color>(
+                                                            Color(0xFF5e50e4)),
+                                                        'CONSCIENTIOUSNESS'),
+                                                    ProgressBar(
+                                                        3,
+                                                        AlwaysStoppedAnimation<
+                                                            Color>(
+                                                            Color(0xFFfe2851)),
+                                                        'EXTROVERSION'),
+                                                    ProgressBar(
+                                                        8,
+                                                        AlwaysStoppedAnimation<
+                                                            Color>(
+                                                            Color(0xFFffcd00)),
+                                                        'AGREEABLENESS'),
+                                                    ProgressBar(
+                                                        4,
+                                                        AlwaysStoppedAnimation<
+                                                            Color>(
+                                                            Color(0xFF0076ff)),
+                                                        'NEUROTICISM'),
+                                                  ],
+                                                )),
                                       ]))
                                     ],
                                   )),
@@ -175,7 +192,7 @@ class EmployeeInfoScreenState extends AuthenticatedScreenState {
                                             AssetConstants.educationAssetPath,
                                             'education'),
                                         SampleButton(
-                                           AssetConstants.resourcesAssetPath,
+                                            AssetConstants.resourcesAssetPath,
                                             'resources'),
                                         SampleButton(
                                             AssetConstants.teamsAssetPath,
